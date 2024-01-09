@@ -25,7 +25,7 @@ const Googleauth = () => {
 
   // Redirect to /dashboard if redirectToDashboard is true
   if (redirectToDashboard) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/usersettings" />;
   }
 
   return (
