@@ -4,7 +4,7 @@ import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/re
 import UserProfile from './userProfile';
 import Userlistings from './userlistings';
 import CreateFeed from '../../component/forms/createFeed';
-import ResidentialForm from '../../component/forms/residential';
+import ResidentialForm from '../../component/forms/properties/residential';
 
 const Usersettings = () => {
   const [userEmail, setUserEmail] = useState('');

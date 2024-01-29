@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
 import google from '../assets/logo/google.png';
 import { signInWithPopup, signOut } from 'firebase/auth';
@@ -7,26 +7,21 @@ import { auth, provider } from '../firebase';
 
 const Googleauth = () => {
   const [isAuth, setIsAuth] = useState(false);
-  const [redirectToDashboard, setRedirectToDashboard] = useState(false);
-
-  function handleLogin() {
-    signInWithPopup(auth, provider)
-        setIsAuth(true)
-        localStorage.setItem("isAuth", true)
-        console.log(isAuth)
-        setRedirectToDashboard(true);
+  const navigate = useNavigate();
+  
+  async function handleLogin() {
+    await signInWithPopup(auth, provider)
+    setIsAuth(true)
+    localStorage.setItem("isAuth", true)
+    navigate('/setupprofile')
   }
 
-  function handleLogout() {
-    signOut(auth)
-    console.log(isAuth)
+  async function handleLogout() {
+    await signOut(auth)
     setIsAuth(false)
+    navigate('/')
   }
 
-  // Redirect to /dashboard if redirectToDashboard is true
-  if (redirectToDashboard) {
-    return <Navigate to="/usersettings" />;
-  }
 
   return (
     <>

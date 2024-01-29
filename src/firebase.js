@@ -4,13 +4,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  apiKey: "AIzaSyAYhBKRXhgqWY5qQPniKqvACL7JpTN_rdA",
+  authDomain: "goodplots-22a5d.firebaseapp.com",
+  projectId: "goodplots-22a5d",
+  storageBucket: "goodplots-22a5d.appspot.com",
+  messagingSenderId: "114628943447",
+  appId: "1:114628943447:web:0a607764ce842e16378d12",
+  measurementId: "G-3R8QQ11T2C",
 };
 
 // Initialize Firebase

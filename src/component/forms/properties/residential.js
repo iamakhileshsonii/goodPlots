@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { collection, addDoc } from "firebase/firestore";
-import { db, auth } from "../../firebase";
+import { db, auth } from "../../../firebase";
 import { Navigate } from "react-router-dom";
 
 const ResidentialForm = () => {

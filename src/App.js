@@ -1,20 +1,20 @@
 import Navbar from "./include/navbar/navbar";
 import Home from "./component/pages/home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Login from "./component/pages/login";
 import Register from "./component/pages/register";
 import Dashboard from "./Dashboard/dashboard";
-import BrokerDashboard from "./Dashboard/brokerDashboard";
 import CommonHome from "./component/pages/commonHome";
 import Footer from "./include/footer";
 import FeaturedRes from "./component/topresidencies/featuredRes";
-import ResidentialForm from "./component/forms/residential";
+import ResidentialForm from "./component/forms/properties/residential";
 import NotFound from "./component/pages/notFound";
-import CreateFeed from "./component/forms/createFeed";
-import Testdash from "./Dashboard/testdash";
 import Usersettings from "./Dashboard/dashboardcomponents/usersettings";
-import Post from "./component/pages/post";
 import SetupProfile from "./component/forms/setupProfile";
+import UsePrivateRoute from "./hooks/usePrivateRoute";
+import Residentbuy from "./component/forms/properties/Residentbuy";
+import SinglePropertyCard from "./component/card/SinglePropertyCard";
+import Mylistings from "./component/pages/Mylistings";
 
 function App() {
   return (
@@ -23,20 +23,77 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CommonHome />} />
-          <Route path="/Home" element={<Home />} />
+          <Route
+            path="/Home"
+            element={
+              <UsePrivateRoute>
+                <Home />
+              </UsePrivateRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/brokerdashboard" element={<BrokerDashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <UsePrivateRoute>
+                <Dashboard />
+              </UsePrivateRoute>
+            }
+          />
           <Route path="/featuredRes" element={<FeaturedRes />} />
-          <Route path="/residentialform" element={<ResidentialForm />} />
-          <Route path="/createfeed" element={<CreateFeed />} />
-          <Route path="/createproperty" element={<createPropertyCard />} />
-          <Route path="/testdash" element={<Testdash />} />
-          <Route path="/usersettings" element={<Usersettings />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/setupprofile" element={<SetupProfile />} />
+          <Route
+            path="/residentialform"
+            element={
+              <UsePrivateRoute>
+                <ResidentialForm />
+              </UsePrivateRoute>
+            }
+          />
+          <Route
+            path="/usersettings"
+            element={
+              <UsePrivateRoute>
+                <Usersettings />
+              </UsePrivateRoute>
+            }
+          />
+          <Route
+            path="/setupprofile"
+            element={
+              <UsePrivateRoute>
+                <SetupProfile />
+              </UsePrivateRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
+
+          <Route
+            path="/residentialbuy"
+            element={
+              <UsePrivateRoute>
+                <Residentbuy />
+              </UsePrivateRoute>
+            }
+          />
+
+          <Route
+            path="/property/:propertyId"
+            element={
+              <UsePrivateRoute>
+                <SinglePropertyCard />
+              </UsePrivateRoute>
+            }
+          />
+
+          <Route
+            path="/mylistings"
+            element={
+              <UsePrivateRoute>
+                <Mylistings />
+              </UsePrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
       <Footer />
