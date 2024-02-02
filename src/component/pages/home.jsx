@@ -3,6 +3,8 @@ import Left from './left';
 import Right from './right';
 import Center from './center';
 import ClipLoader from "react-spinners/ClipLoader";
+import { auth, db } from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 const Home = () => {
 
@@ -15,6 +17,27 @@ const Home = () => {
       setLoader(false)
     }, 3000);
   },[])
+
+  // Auth Info
+  const [authInfo, setAuthInfo] = useState({
+    userId:'',
+    userName: '',
+    userDp: '',
+    userEmail: ''
+  });
+
+  useEffect(() => {
+    // Update authInfo when user information is available
+    if (auth.currentUser) {
+      setAuthInfo({
+        userId: auth.currentUser.uid,
+        userName: auth.currentUser.displayName,
+        userDp: auth.currentUser.photoURL,
+        userEmail: auth.currentUser.email
+      });
+    }
+  }, [auth.currentUser]);
+
 
   return (
     <>
@@ -35,8 +58,8 @@ const Home = () => {
       :
     
       <div className='flex justify-evenly flex-wrap py-5 px-5 '>
-        <div className='w-1/4 block text-center '><Left/></div>
-        <div className='w-1/2 block text-center border-x border-bordercolor min-h-screen py-0 px-5'><Center/></div>
+        <div className='w-1/4 block text-center'><Left authInfo={authInfo}/></div>
+        <div className='w-1/2 block text-center border-x border-bordercolor min-h-screen py-0 px-5'><Center authInfo={authInfo}/></div>
         <div className='w-1/4 block text-center' ><Right/></div>
     </div>
     

@@ -15,6 +15,7 @@ import UsePrivateRoute from "./hooks/usePrivateRoute";
 import Residentbuy from "./component/forms/properties/Residentbuy";
 import SinglePropertyCard from "./component/card/SinglePropertyCard";
 import Mylistings from "./component/pages/Mylistings";
+import Testpage from "./component/pages/Testpage";
 
 function App() {
   return (
@@ -94,6 +95,8 @@ function App() {
               </UsePrivateRoute>
             }
           />
+
+          <Route path="/testpage" element={<Testpage />} />
         </Routes>
       </BrowserRouter>
       <Footer />

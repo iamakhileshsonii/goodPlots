@@ -1,50 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Listings from './listings';
-import { auth, db } from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
-const Left = () => {
+const Left = ({authInfo}) => {
 
-  const [authInfo, setAuthInfo] = useState({
-    userName: '',
-    userDp: '',
-    userEmail: ''
-  });
-
-  useEffect(() => {
-    // Update authInfo when user information is available
-    if (auth.currentUser) {
-      setAuthInfo({
-        userName: auth.currentUser.displayName,
-        userDp: auth.currentUser.photoURL,
-        userEmail: auth.currentUser.email
-      });
-    }
-  }, [auth.currentUser]);
-
-  const [gp_feed, setGpFeed] = useState([]);
-  const postsRef = collection(db, "gp_feed");
-
-    useEffect(() => {
-        async function get_current_user_feed() {
-            const data = await getDocs(postsRef);
-            const transformedData = data.docs.map((document) => (
-                { ...document.data(), id: document.id }
-            ));
-            setGpFeed(transformedData);
-        }
-
-        get_current_user_feed();
-    }, []);
-
+  const {userName, userEmail, userDp} = authInfo
   
   return (
     <>
         <div className='block justify-evenly'>
             <div className='flex w-full justify-center'>
-                <img src={authInfo.userDp} className='rounded h-12 w-12 rounded-full self-center'/>   
-                <h2 className='text-left font-semibold text-xl px-2 self-center'>{authInfo.userName}</h2>
+                <img src={userDp} className='rounded h-12 w-12 rounded-full self-center'/>   
+                <h2 className='text-left font-semibold text-xl px-2 self-center'>{userName}</h2>
             </div>
             
             
@@ -53,7 +19,7 @@ const Left = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
-                  <span>{authInfo.userEmail}</span>
+                  <span>{userEmail}</span>
                 </div>
 
                 <div className='flex w-full justify-center'>
