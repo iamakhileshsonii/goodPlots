@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const Left = ({authInfo}) => {
 
-  const {userName, userEmail, userDp} = authInfo
+  const {userName, userEmail, userDp} = authInfo;
+
+  const{authUsername, authEmail, authDp} = useAuth();
   
   return (
     <>
         <div className='block justify-evenly'>
             <div className='flex w-full justify-center'>
                 <img src={userDp} className='rounded h-12 w-12 rounded-full self-center'/>   
-                <h2 className='text-left font-semibold text-xl px-2 self-center'>{userName}</h2>
+                <h2 className='text-left font-semibold text-xl px-2 self-center'>{authUsername} </h2>
             </div>
             
             
