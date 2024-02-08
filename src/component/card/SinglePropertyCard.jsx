@@ -47,25 +47,7 @@ const [similarListing, setSimilarListing] = useState([]);
     fetchCurrentUser();
   }, [auth.currentUser]); // You might want to include auth.currentUser as a dependency to ensure the effect runs when it changes.
 
-  
-// Fetching similar listings
-useEffect(()=>{
-    async function fetchSimilarListings(){
-        const postRef = await collection(db, 'gp_properties');
-        const propertyData = await getDocs(postRef);
-        setSimilarListing(propertyData.docs.map((doc)=>(
-            {...doc.data(), id: doc.id}
-        )))
-    }
-    console.log(similarListing)
-    fetchSimilarListings()
-},[])
 
-
-//  Filter similar listings - It will not displaying listings of current logged in users
-// const filterSimilarListing = similarListing.filter(
-//     (list)=>authUser !== similarListing.authInfo.userId
-// )
 
   return (
     <div className='block px-28 py-16'>

@@ -11,6 +11,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); // Initialize useNavigate
 
+  const [isAuth, setIsAuth] = useState(JSON.parse(localStorage.getItem('isAuth')) || false)
+
   const signIn = async (e) => {
     e.preventDefault();
     
@@ -18,9 +20,8 @@ const Login = () => {
       // Use Firebase authentication to sign in
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
-
-      // Redirect to "/dashboard" after successful login
-      navigate('/dashboard');
+      setIsAuth(true);
+      navigate('/home');
     } catch (error) {
       console.log(error);
     }

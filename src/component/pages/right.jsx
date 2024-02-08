@@ -4,14 +4,17 @@ import { collection, deleteDoc, documentId, getDocs } from 'firebase/firestore';
 import UserListings from '../card/UserListings';
 import { Link } from 'react-router-dom';
 import {  Tooltip} from "@material-tailwind/react";
+import useData from '../../hooks/useData';
 
 const Right = () => {
 
+  const {gpData, Loading} = useData();
   const [mylistings, setMyListings] = useState([]);
   const postRef = collection(db, 'gp_properties');
   
   const [currentAuthId, setCurrentAuthId] = useState();
 
+  
   useEffect(()=>{
     async function fetchmylistings(){
       const data = await getDocs(postRef);

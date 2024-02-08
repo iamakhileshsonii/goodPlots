@@ -1,11 +1,14 @@
 import React from 'react';
-import AuthData, { propertyData } from '../../auth/AuthData';
+import useData from '../../hooks/useData';
 
 const Testpage = () => {
-    const {authInfo, propertyDetail, feedDetails} = propertyData
+  const gpData = useData();
+  console.log(gpData)
+    
   return (
     <div>
-        <h6>{authInfo.userId}</h6>
+        
+
     </div>
   )
 }
