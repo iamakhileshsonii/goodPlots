@@ -32,7 +32,6 @@ const ListingCards = ({prop}) => {
               </div>
 
               <div>
-                <p>call</p>
                 <p className='px-3 bg-red rounded-md text-white'>Contact</p>
               </div>
               

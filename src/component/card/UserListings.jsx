@@ -53,7 +53,7 @@ const UserListings = ({myproperty}) => {
                 </svg>
           
                 </Tooltip>
-            <DeleteListing/>
+            
           </div>
           
         </div>
