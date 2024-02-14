@@ -39,7 +39,7 @@ const Residentbuy = () => {
         city: event.target.residentialBuy_city.value,
         expected_price: event.target.residentialBuy_expectedPrice.value,
         total_area: event.target.total_area_super_area.value,
-        type: 'Residential Buy'
+        type: 'Residential Buy',
 
       },
       authInfo: {
@@ -48,7 +48,8 @@ const Residentbuy = () => {
         userEmail: auth.currentUser.email
       },
       feedDetails:{
-        publishedOn: serverTimestamp()
+        publishedOn: serverTimestamp(),
+        status: 'pending'
       }
     }
 

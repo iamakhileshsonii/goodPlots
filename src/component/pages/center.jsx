@@ -37,9 +37,9 @@ const Center = () => {
         </div>
 
         {filterListings.map((property) => (
-          <Link to={`/property/${property.id}`} key={property.id}>
-            <ListingCards prop={property} propid={property.id} />
-          </Link>
+          
+            <ListingCards prop={property} propid={property.id}  key={property.id} />
+        
         ))}
       </div>
     </>
