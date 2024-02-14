@@ -4,7 +4,7 @@ import { getDocs, collection } from "firebase/firestore";
 
 const useUsers = () => {
   const [authUser, setAuthUser] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Initialize loading state
+  const [authUserLoading, setIsLoading] = useState(true); // Initialize loading state
 
   useEffect(() => {
     async function fetchUsers() {
@@ -24,7 +24,7 @@ const useUsers = () => {
       }
     }
   }, []);
-  return { authUser, isLoading };
+  return { authUser, authUserLoading };
 };
 
 export default useUsers;
