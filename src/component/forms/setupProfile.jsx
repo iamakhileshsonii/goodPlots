@@ -33,6 +33,7 @@ const SetupProfile = () => {
       
       userName: auth.currentUser.displayName,
       userRole: userRole,
+      userEmail: event.target.GpUser_email.value,
       userPhone: event.target.GpUser_phone.value,
       userCity: event.target.GpUser_city.value,
       userGender: gender,
@@ -90,10 +91,10 @@ const SetupProfile = () => {
               size="lg"
               placeholder="goodplots@gmail.com"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              name="GpUser-email"
+              name="GpUser_email" value={auth?.currentUser?.email}
               labelProps={{
                 className: "before:content-none after:content-none ",
-              }} required
+              }} disabled
             />
 
             <Typography variant="h6" color="blue-gray" className="-mb-3">

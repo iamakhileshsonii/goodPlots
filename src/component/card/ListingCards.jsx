@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import {auth, db} from '../../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@material-tailwind/react';
+import useLoggedUser from "../../hooks/useLoggedUser";
 
 const ListingCards = ({prop, propid}) => {
   
@@ -8,8 +11,12 @@ const ListingCards = ({prop, propid}) => {
   // Accessing property ID
   const propertyId = prop.id;
 
-  const [isLike, setIsLike] = useState(false);
-  const [bookmark, setBookmark] = useState(false);
+  const {filterLogUser} = useLoggedUser();
+
+  const likeRef = collection(db, 'gp_likes'); // Set likeRef for Likes Documents
+  
+  const [isLike, setIsLike] = useState(false); // Set like button state - Initially False
+  const [bookmark, setBookmark] = useState(false); // Set like button state - Initially False
 
 
   
@@ -18,8 +25,9 @@ const ListingCards = ({prop, propid}) => {
     controlLikes();
   }
 
-  function controlLikes() {
+  async function controlLikes() {
     console.log(isLike ? `Disliked by: ${propertyId}` : `Liked by: ${propertyId}`);
+    
   }
   
 
@@ -77,7 +85,7 @@ const ListingCards = ({prop, propid}) => {
                       <div>
                         {bookmark ?
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" onClick={handleBookmark}>
-                          <path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z" clip-rule="evenodd" />
+                          <path fillRule="evenodd" d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z" clipRule="evenodd" />
                         </svg>
                         :
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6" onClick={handleBookmark}>
@@ -102,7 +110,7 @@ const ListingCards = ({prop, propid}) => {
               <div>
                 <Tooltip content="View Listing" placement="top">
               <Link to={`/property/${propertyId}`}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-red">
-                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" />
+                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clipRule="evenodd" />
               </svg>
               </Link>
               </Tooltip>

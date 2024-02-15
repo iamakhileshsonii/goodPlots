@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 import useLoggedUser from '../../hooks/useLoggedUser';
+import { Badge, Button } from "@material-tailwind/react";
 
 const Left = ({authInfo}) => {
 
-  const {userName, userEmail, userDp} = authInfo;
+  const {userDp} = authInfo;
 
-  const{authUsername, authEmail, authDp} = useAuth();
 
+
+  // Current User Data
   const {filterLogUser} = useLoggedUser();
+  const [fetchingUserData, setFetchingUserData] = useState(false)
   const currentUser = filterLogUser[0]
   
   return (
     <>
         <div className='block justify-evenly'>
-            <div className='flex w-full justify-center '>
-                <img src={userDp} className='rounded h-12 w-12 rounded-full self-center'/>   
+          {
+            fetchingUserData &&fetchingUserData ? <Link to='/setupprofile'><p className='m-2 py-1 px-2 rounded-md border border-bordercolor font-semibold '>Setup Profile</p></Link>
+            :
+            <>
+          <div className='flex w-full justify-center '>
+                <img src={userDp} className='h-12 w-12 rounded-full self-center'/>   
                   <div className='block text-left'>
                   <h2 className='text-left font-semibold text-xl px-2 self-center'>{currentUser?.userName} </h2>
                   <span className='text-left text-lg my-0 py-0 font-semibold text-red px-2'>{currentUser?.userRole}</span>
@@ -62,6 +68,10 @@ const Left = ({authInfo}) => {
 
 
             </div>
+          </>
+          }
+          
+            
         </div>
 
         <div className='block'>
