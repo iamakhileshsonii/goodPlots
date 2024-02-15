@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useLoggedUser from '../../hooks/useLoggedUser';
-import { Badge, Button } from "@material-tailwind/react";
+import usePendingListings from '../../hooks/usePendingListings';
+
 
 const Left = ({authInfo}) => {
 
   const {userDp} = authInfo;
-
+  const {pendingListings} = usePendingListings();
 
 
   // Current User Data
@@ -75,7 +76,7 @@ const Left = ({authInfo}) => {
         </div>
 
         <div className='block'>
-          <div className='flex border-b-4 border-red p-3 my-5'>
+          <div className='flex gap-2 border-b-4 border-red p-3 my-5'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
             </svg>
@@ -88,6 +89,33 @@ const Left = ({authInfo}) => {
             <Link to="/"><p className='m-1 p-1 rounded border border-bordercolor'>Commercial Buy</p></Link>
             <Link to="/"><p className='m-1 p-1 rounded border border-bordercolor'>Commercial Rent</p></Link>
           </div>
+        </div>
+
+        <div className='block'>
+          <div className='flex gap-2 border-b-4 border-red p-3 my-5'>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-orange">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+          </svg>
+
+            <h4 className='text-lg font-semibold'>Pending Listings</h4>
+          </div>
+          <div>
+              {
+                pendingListings.map((list)=>(
+                  <div key={list.id} className='m-2 p-4 border border-bordercolor rounded-md'>
+                    <h6 className='font-semibold text-left'>{list.propertyDetail.title}</h6>
+                      <div className='flex'>
+                        <p className='border border-bordercolor rounded-sm px-2 text-xs'>{list.propertyDetail.property_subtype}</p>
+                      </div>
+
+                      <div className='flex justify-evenly py-2'>
+                      <p className='rounded-md mx-1 p-1 text-xs bg-red text-white w-1/2'>Reject</p>
+                      <p className='rounded-md mx-1 p-1 text-xs bg-green text-white w-1/2'>Accept</p>
+                      </div>
+                  </div>
+                ))
+              }
+            </div>
         </div>
 
       

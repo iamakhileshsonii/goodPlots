@@ -5,12 +5,14 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        red: '#B40000',
-        bordercolor: '#C7C7C7',
-        cardbg: '#f6f6f6',
+        red: "#B40000",
+        green: "#00a300",
+        orange: "#fea400",
+        bordercolor: "#C7C7C7",
+        cardbg: "#f6f6f6",
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
+        roboto: ["Roboto", "sans-serif"],
       },
     },
   },
