@@ -3,7 +3,7 @@ import poster from '../../assets/images/Bg_cover.jpeg';
 import { useParams } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
-import SimilarProperties from './SimilarProperties';
+import { useContextData } from '../../context/DataContext';
 
 
 const SinglePropertyCard = ({propid}) => {
@@ -11,42 +11,22 @@ const SinglePropertyCard = ({propid}) => {
 const { propertyId } = useParams();
 const [singleProperty, setSingleProperty] = useState([]);
 
+const{gpData, isLoading } = useContextData();
+
 const [authUser, setAuthUser] = useState([]);
-const [similarListing, setSimilarListing] = useState([]);
 
 
   useEffect(() => {
     async function fetchSingleProp() {
       try {
-        const propId = propertyId; // Replace with the actual property ID
-        const propRef = doc(db, 'gp_properties', propId);
-        const property = await getDoc(propRef);
-        setSingleProperty(property.data());
-        
+        const filterListing = gpData.filter((list)=> list.id == propertyId);
+        setSingleProperty(filterListing[0])       
       } catch (error) {
         console.error('Error fetching property:', error);
       }
     }
-
     fetchSingleProp();
   }, [propertyId]);
-
-
-  useEffect(() => {
-    function fetchCurrentUser() {
-      if (auth.currentUser) {
-        const loggedUser = {
-          userId: auth.currentUser.uid,
-          username: auth.currentUser.displayName,
-          email: auth.currentUser.email
-        };
-        setAuthUser(loggedUser);
-      }
-    }
-  
-    fetchCurrentUser();
-  }, [auth.currentUser]); // You might want to include auth.currentUser as a dependency to ensure the effect runs when it changes.
-
 
 
   return (

@@ -30,7 +30,7 @@ const SetupProfile = () => {
         userId: auth.currentUser.uid,
         timeStamp: serverTimestamp()
       },
-      
+      userDp: auth.currentUser.photoURL,
       userName: auth.currentUser.displayName,
       userRole: userRole,
       userEmail: event.target.GpUser_email.value,

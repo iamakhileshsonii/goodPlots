@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useLoggedUser from '../../hooks/useLoggedUser';
-import usePendingListings from '../../hooks/usePendingListings';
+import {useContextData} from '../../context/DataContext';
+import { useUserData } from '../../context/UserContext';
+import ListingTypes from '../homeComponents/listingTypes';
+
 
 
 const Left = ({authInfo}) => {
+  const { gpData, isLoading } = useContextData();
+  const {userData} = useUserData();
 
-  const {userDp} = authInfo;
-  const {pendingListings} = usePendingListings();
+  // Pending Listings
+  const pendingListings = gpData.filter((list)=> list.feedDetails.status == "pending");
 
 
-  // Current User Data
-  const {filterLogUser} = useLoggedUser();
-  const [fetchingUserData, setFetchingUserData] = useState(false)
-  const currentUser = filterLogUser[0]
+  const [fetchingCurrentUser, setfetchingCurrentUser] = useState(false)
   
   return (
     <>
         <div className='block justify-evenly'>
           {
-            fetchingUserData &&fetchingUserData ? <Link to='/setupprofile'><p className='m-2 py-1 px-2 rounded-md border border-bordercolor font-semibold '>Setup Profile</p></Link>
+            fetchingCurrentUser && fetchingCurrentUser ? <Link to='/setupprofile'><p className='m-2 py-1 px-2 rounded-md border border-bordercolor font-semibold '>Setup Profile</p></Link>
             :
             <>
           <div className='flex w-full justify-center '>
-                <img src={userDp} className='h-12 w-12 rounded-full self-center'/>   
+                <img src={userData[0]?.userDp || ""} className='h-12 w-12 rounded-full self-center'/>   
                   <div className='block text-left'>
-                  <h2 className='text-left font-semibold text-xl px-2 self-center'>{currentUser?.userName} </h2>
-                  <span className='text-left text-lg my-0 py-0 font-semibold text-red px-2'>{currentUser?.userRole}</span>
+                  <h2 className='text-left font-semibold text-xl px-2 self-center'>{userData[0]?.userName} </h2>
+                  <span className='text-left text-lg my-0 py-0 font-semibold text-red px-2'>{userData[0]?.userRole}</span>
                   </div>    
             </div>
             
@@ -36,7 +37,7 @@ const Left = ({authInfo}) => {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
-                  <span>{currentUser?.userName}</span>
+                  <span>{userData[0]?.userName}</span>
                 </div>
 
                 <div className='flex justify-center border border-bordercolor rounded-sm px-2 py-1'>
@@ -44,16 +45,17 @@ const Left = ({authInfo}) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                 </svg>
 
-                  <span>{currentUser?.userPhone}</span>
+                  <span>{userData[0]?.userPhone}</span>
                 </div>
 
                 <div className='flex justify-center border border-bordercolor rounded-sm px-2 py-1'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-              </svg>
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+</svg>
 
 
-                  <span>{currentUser?.userRole}</span>
+
+                  <span>{userData[0]?.userEmail}</span>
                 </div>
 
                 <div className='flex justify-center border border-bordercolor rounded-sm px-2 py-1'>
@@ -64,8 +66,9 @@ const Left = ({authInfo}) => {
 
 
 
-                  <span>{currentUser?.userCity}</span>
+                  <span>{userData[0]?.userCity}</span>
                 </div>
+
 
 
             </div>
@@ -91,31 +94,8 @@ const Left = ({authInfo}) => {
           </div>
         </div>
 
-        <div className='block'>
-          <div className='flex gap-2 border-b-4 border-red p-3 my-5'>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-orange">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
-          </svg>
-
-            <h4 className='text-lg font-semibold'>Pending Listings</h4>
-          </div>
-          <div>
-              {
-                pendingListings.map((list)=>(
-                  <div key={list.id} className='m-2 p-4 border border-bordercolor rounded-md'>
-                    <h6 className='font-semibold text-left'>{list.propertyDetail.title}</h6>
-                      <div className='flex'>
-                        <p className='border border-bordercolor rounded-sm px-2 text-xs'>{list.propertyDetail.property_subtype}</p>
-                      </div>
-
-                      <div className='flex justify-evenly py-2'>
-                      <p className='rounded-md mx-1 p-1 text-xs bg-red text-white w-1/2'>Reject</p>
-                      <p className='rounded-md mx-1 p-1 text-xs bg-green text-white w-1/2'>Accept</p>
-                      </div>
-                  </div>
-                ))
-              }
-            </div>
+        <div className='block p-2 my-10 border border-bordercolor'>
+          <ListingTypes/>
         </div>
 
       

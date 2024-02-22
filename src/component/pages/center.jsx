@@ -4,6 +4,7 @@ import ListingCards from '../card/ListingCards';
 import { Link } from 'react-router-dom';
 import useData from '../../hooks/useData';
 
+
 const Center = () => {
   const { gpData, isLoading } = useData();
   const [currentAuthId, setCurrentAuthId] = useState();

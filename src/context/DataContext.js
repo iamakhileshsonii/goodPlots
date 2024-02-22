@@ -35,7 +35,7 @@ export const DataProvider = ({ children }) => {
   );
 };
 
-export const useData = () => {
+export const useContextData = () => {
   const context = useContext(DataContext);
   return context;
 };
