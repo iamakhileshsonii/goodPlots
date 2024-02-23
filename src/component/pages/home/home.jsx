@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Left from './left';
-import Right from './right';
-import Center from './center';
+import Left from './components/left';
+import Right from './components/right';
+import Center from './components/center';
 import ClipLoader from "react-spinners/ClipLoader";
-import { auth, db } from '../../firebase';
+import { auth, db } from '../../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 const Home = () => {

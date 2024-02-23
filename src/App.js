@@ -1,18 +1,18 @@
 import Navbar from "./include/navbar/navbar";
-import Home from "./component/pages/home";
+import Home from "./component/pages/home/home";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Login from "./component/pages/login";
 import Register from "./component/pages/register";
 import CommonHome from "./component/pages/commonHome";
 import Footer from "./include/footer";
-import FeaturedRes from "./component/topresidencies/featuredRes";
+import FeaturedRes from "./assets/topresidencies/featuredRes";
 import ResidentialForm from "./component/forms/properties/residential";
 import NotFound from "./component/pages/notFound";
 import SetupProfile from "./component/forms/setupProfile";
 import UsePrivateRoute from "./hooks/usePrivateRoute";
 import Residentbuy from "./component/forms/properties/Residentbuy";
 import SinglePropertyCard from "./component/card/SinglePropertyCard";
-import Mylistings from "./component/pages/Mylistings";
+import Mylistings from "./component/pages/home/Mylistings";
 import Testpage from "./component/pages/Testpage";
 
 

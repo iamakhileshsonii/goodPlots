@@ -30,24 +30,31 @@ const NewListings = () => {
         filterNewListings()
     }, [])
 
+    const statusColor = (list) =>{
+        if(list.feedDetails.status === 'published'){
+            return 'border border-green';
+        }else if(list.feedDetails.status === 'pending'){
+            return 'border border-orange';
+        }else{
+            return 'border border-bordercolor';
+        }
+    }
+
   return (
     <div>
-
         {
             listings && listings.map((list)=>(
-                <div className='block my-3 border border-bordercolor p-3 rounded-md' key={list.id}>
-            <h4 className='text-left text-black font-semibold'>{list.propertyDetail.title}</h4>
-            <div className='flex gap-4'>
-                <p className='border border-bordercolor rounded-sm text-xs p-1'>{list.propertyDetail.title}</p>
-                <p className='border border-bordercolor rounded-sm text-xs'>{list.propertyDetail.property_subtype}</p>
-                <p className='border border-bordercolor rounded-sm text-xs'>{list.propertyDetail.city}</p>
-                <p className='border border-bordercolor rounded-sm text-xs'>{list.authInfo.userName}</p>
-            </div>
-        </div>
+                <div className={`block  my-3 p-3 rounded-md ${statusColor(list)}`} key={list.id}>
+                    <h4 className='text-left text-black font-semibold'>{list.propertyDetail.title}</h4>
+                    <div className='flex gap-4'>
+                        <p className='border px-1 border-bordercolor rounded-sm text-xs text-black italic'>{list.propertyDetail.property_subtype}</p>
+                        <p className='border px-1 border-bordercolor rounded-sm text-xs text-black italic'>{list.propertyDetail.city}</p>
+                        <p className='border px-1 border-bordercolor rounded-sm text-xs text-black italic'>{list.authInfo.userName}</p>
+                        <p className='text-xs'>{list.feedDetails.status}</p>
+                    </div>
+             </div>
             ))
-        }
-
-        
+        }       
     </div>
   )
 }

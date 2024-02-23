@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {useContextData} from '../../context/DataContext';
-import { useUserData } from '../../context/UserContext';
-import ListingTypes from '../homeComponents/listingTypes';
+import {useContextData} from '../../../../context/DataContext';
+import { useUserData } from '../../../../context/UserContext';
+import ListingTypes from '../../../homeComponents/listingTypes';
 
 
 

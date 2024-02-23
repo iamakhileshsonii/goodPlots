@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from "../../firebase";
-import ListingCards from '../card/ListingCards';
-import { Link } from 'react-router-dom';
-import useData from '../../hooks/useData';
+import { auth } from "../../../../firebase";
+import ListingCards from '../../../card/ListingCards';
+import useData from '../../../../hooks/useData';
 
 
 const Center = () => {
