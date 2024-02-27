@@ -28,21 +28,35 @@ const Residentbuy = () => {
 
   const handleImageUpload = async (event) => {
     event.preventDefault();
-    if (selectImage !== null) {
+    if (selectImage == null) {
+      alert("Select an image to upload!")
+    } else {
       try {
         const imageId = v4(); // Generate a unique ID for each image to avoid overwriting files with the same name
         const imageRef = ref(storage, `properties/${selectImage.name}-${imageId}`);
         await uploadBytes(imageRef, selectImage); // Wait for the upload to complete
         const imageURL = await getDownloadURL(imageRef); // Now that the file is uploaded, get the URL
         setFeatureImgURL(imageURL);
-        console.log(setFeatureImgURL)
+        alert("Image Uploaded")
       } catch (error) {
         console.log("Error uploading image", error);
+        alert("Error uploading feature image")
       }
-    } else {
       return;
     }
   };
+
+  // Handle Form Input
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  const [address, setAddress] = useState('');
+  const [locality, setLocality] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState]= useState('');
+  const [expectedPrice, setExpectedPrice] = useState('');
+  const [totalArea, setTotalArea] = useState('');
+  const [priceNegotiate, setPriceNegotiate] = useState('');
+  const [validationErrors, setValidationErrors] = useState({});
 
   // Set Subtype
   const[subType, setSubType] = useState()  
@@ -50,20 +64,60 @@ const Residentbuy = () => {
     setSubType(value)
   }   
   
+  // // Handle Form Submit
+  // async function handleSubmit_residentialBuy(event){
+  //   event.preventDefault();
+
+  //   const residentialBuyData = {
+  //     propertyDetail: {
+  //       title: event.target.residentialBuy_title.value,
+  //       featureImg: featureImgURL,
+  //       desc: event.target.residentialBuy_desc.value,
+  //       property_subtype: event.target.residentialBuy_Subtype.value,
+  //       address: event.target.residentialBuy_address.value,
+  //       city: event.target.residentialBuy_city.value,
+  //       expected_price: event.target.residentialBuy_expectedPrice.value,
+  //       total_area: event.target.total_area_super_area.value,
+  //       type: 'Residential Buy',
+
+  //     },
+  //     authInfo: {
+  //       userId: auth.currentUser?.uid,
+  //       userName: auth.currentUser?.displayName,
+  //       userEmail: auth.currentUser?.email
+  //     },
+  //     feedDetails:{
+  //       publishedOn: serverTimestamp(),
+  //       status: 'pending'
+  //     }
+  //   }
+
+  //   await addDoc(postRef, residentialBuyData);
+  //   navigate("/home")
+  //   console.log("Residential Form Submitted successdully")
+  // }
+
+
   // Handle Form Submit
   async function handleSubmit_residentialBuy(event){
     event.preventDefault();
 
+    // Validate form
+  if (!validateForm()) {
+    console.error("Validation failed");
+    return; // Prevent form submission
+  }else{
+
     const residentialBuyData = {
       propertyDetail: {
-        title: event.target.residentialBuy_title.value,
+        title: title,
         featureImg: featureImgURL,
-        desc: event.target.residentialBuy_desc.value,
-        property_subtype: event.target.residentialBuy_Subtype.value,
-        address: event.target.residentialBuy_address.value,
-        city: event.target.residentialBuy_city.value,
-        expected_price: event.target.residentialBuy_expectedPrice.value,
-        total_area: event.target.total_area_super_area.value,
+        desc: desc,
+        property_subtype: subType,
+        address: address,
+        city: city,
+        expected_price: expectedPrice,
+        total_area: totalArea,
         type: 'Residential Buy',
 
       },
@@ -82,7 +136,28 @@ const Residentbuy = () => {
     navigate("/home")
     console.log("Residential Form Submitted successdully")
   }
+  }
 
+
+  // Form Validation
+  const validateForm = () => {
+    let errors = {};
+  
+    if (!title){ alert("Fill title") };
+    if (!desc) {alert("Description is required")};
+    if (!address) alert("Address is required");
+    if (!city) alert("City is required");
+    if (!expectedPrice) alert("Expected price is required")
+    if (!totalArea) alert("Total area is required")
+  
+    // Add more validation as needed
+  
+    setValidationErrors(errors);
+  
+    // Form is valid if the errors object is empty
+    return Object.keys(errors).length === 0;
+  };
+  
   return (
     <div className='grid justify-center py-20 px-40 border-bordercolor'>
         <Card color="transparent" shadow={false}>
@@ -114,13 +189,14 @@ const Residentbuy = () => {
             placeholder="275 Sq.Yd. spacious corner plot with serene mountain view in Amaravati, Panchkula"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             name='residentialBuy_title'
+            onChange={(e)=>setTitle(e.target.value)}
             labelProps={{
               className: "before:content-none after:content-none",
             }}
           />
 
         <div className="w-96">
-          <Textarea label="Message" placeholder='1500 Sq.Yd.residential plot with easy access to essential facilities for sale in Sector 9,Chandigarh' name='residentialBuy_desc' />
+          <Textarea label="Message" placeholder='1500 Sq.Yd.residential plot with easy access to essential facilities for sale in Sector 9,Chandigarh' name='residentialBuy_desc'  onChange={(e)=> setDesc(e.target.value)}  />
         </div>
 
         <div className='w-96'>
@@ -144,6 +220,7 @@ const Residentbuy = () => {
             placeholder="275 Sq.Yd. spacious corner plot with serene mountain view in Amaravati, Panchkula"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             name='residentialBuy_address'
+            onChange={(e)=>setAddress(e.target.value)}
             labelProps={{
               className: "before:content-none after:content-none",
             }}
@@ -158,6 +235,7 @@ const Residentbuy = () => {
             placeholder="275 Sq.Yd. spacious corner plot with serene mountain view in Amaravati, Panchkula"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             name='residentialBuy_locality'
+            onChange={(e)=>setLocality(e.target.value)}
             labelProps={{
               className: "before:content-none after:content-none",
             }}
@@ -178,6 +256,7 @@ const Residentbuy = () => {
                   placeholder="00/00"
                   className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                   name='residentialBuy_city'
+                  onChange={(e)=>setCity(e.target.value)}
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}
@@ -195,6 +274,7 @@ const Residentbuy = () => {
                   containerProps={{ className: "min-w-[72px]" }}
                   placeholder="000"
                   className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                  onChange={(e)=>setState(e.target.value)}
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}
@@ -210,6 +290,7 @@ const Residentbuy = () => {
             placeholder="Sq Ft"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             name='total_area_super_area'
+            onChange={(e)=>setTotalArea(e.target.value)}
             labelProps={{
               className: "before:content-none after:content-none",
             }}
@@ -223,6 +304,7 @@ const Residentbuy = () => {
             placeholder="Enter total price inclusive of GST as applicable"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             name='residentialBuy_expectedPrice'
+            onChange={(e)=>setExpectedPrice(e.target.value)}
             labelProps={{
               className: "before:content-none after:content-none",
             }}
