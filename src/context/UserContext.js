@@ -48,11 +48,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserDataContext.Provider value={{ userData }}>
-      {userDataLoading ? ( // Check loading state and display loading message if true
-        <div>Loading...</div>
-      ) : (
-        children
-      )}
+        {children}
     </UserDataContext.Provider>
   );
 };
