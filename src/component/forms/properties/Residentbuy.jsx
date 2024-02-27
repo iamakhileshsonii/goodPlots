@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { auth, db } from '../../../firebase';
+import { auth, db, storage } from '../../../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Card, Input, Checkbox, Button, Typography, Textarea, Radio } from "@material-tailwind/react";
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
+import {v4} from "uuid";
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+
 
 
 const Residentbuy = () => {
@@ -13,18 +16,39 @@ const Residentbuy = () => {
 
   const postRef = collection(db, 'gp_properties');
 
-  const userDisplayName = auth.currentUser.displayName;
-  const userEmail = auth.currentUser.email;
-  const userPhone = auth.currentUser.phoneNumber;
+  const userDisplayName = auth.currentUser?.displayName;
+  const userEmail = auth.currentUser?.email;
+  const userPhone = auth.currentUser?.phoneNumber;
+
+  // Property Image
+  const [selectImage, setSelectImage] = useState(null)
+  const [featureImgURL, setFeatureImgURL ] = useState();
+
+  const imageRef = ref(storage, "properties/")
+
+  const handleImageUpload = async (event) => {
+    event.preventDefault();
+    if (selectImage !== null) {
+      try {
+        const imageId = v4(); // Generate a unique ID for each image to avoid overwriting files with the same name
+        const imageRef = ref(storage, `properties/${selectImage.name}-${imageId}`);
+        await uploadBytes(imageRef, selectImage); // Wait for the upload to complete
+        const imageURL = await getDownloadURL(imageRef); // Now that the file is uploaded, get the URL
+        setFeatureImgURL(imageURL);
+        console.log(setFeatureImgURL)
+      } catch (error) {
+        console.log("Error uploading image", error);
+      }
+    } else {
+      return;
+    }
+  };
 
   // Set Subtype
   const[subType, setSubType] = useState()  
   function handle_SubType(value){
     setSubType(value)
   }   
-
-  // User Details
-  
   
   // Handle Form Submit
   async function handleSubmit_residentialBuy(event){
@@ -33,6 +57,7 @@ const Residentbuy = () => {
     const residentialBuyData = {
       propertyDetail: {
         title: event.target.residentialBuy_title.value,
+        featureImg: featureImgURL,
         desc: event.target.residentialBuy_desc.value,
         property_subtype: event.target.residentialBuy_Subtype.value,
         address: event.target.residentialBuy_address.value,
@@ -43,9 +68,9 @@ const Residentbuy = () => {
 
       },
       authInfo: {
-        userId: auth.currentUser.uid,
-        userName: auth.currentUser.displayName,
-        userEmail: auth.currentUser.email
+        userId: auth.currentUser?.uid,
+        userName: auth.currentUser?.displayName,
+        userEmail: auth.currentUser?.email
       },
       feedDetails:{
         publishedOn: serverTimestamp(),
@@ -57,15 +82,6 @@ const Residentbuy = () => {
     navigate("/home")
     console.log("Residential Form Submitted successdully")
   }
-
-
-  // Date Picker
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
 
   return (
     <div className='grid justify-center py-20 px-40 border-bordercolor'>
@@ -219,6 +235,22 @@ const Residentbuy = () => {
             <Radio name="type" label="Yes" value="Yes" defaultChecked/>
             <Radio name="type" label="No" value="No" />
           </div>
+
+          <Typography variant="h6" color="blue-gray" className="-mb-5">
+            Upload property image
+          </Typography>
+        <div className='grid justify-center my-3 p-2 border border-bordercolor'>
+          <input type="file" placeholder='upload property image' onChange={(e)=> setSelectImage(e.target.files[0]) } />
+          
+            <button className='flex justify-center w-full gap-3 py-1 px-2 mt-5 rounded-md text-white bg-black hover:bg-green duration-300' type='button' onClick={handleImageUpload}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+            </svg>
+              Upload Image
+            </button>
+            
+
+        </div>
  
  
         {/* User Information Prefilled */}  
@@ -247,25 +279,11 @@ const Residentbuy = () => {
           </Typography>
           <Input type='text' value={userEmail} disabled/>
 
-
-          {/* Date of birth */}
-          
-          <Typography variant="h6" color="blue-gray" className="mb-3">
-            Date Of Birth
-          </Typography>
-          
-          <ReactDatePicker
-            selected={selectedDate}
-            onChange={handleDateChange}
-            dateFormat="dd/MM/yyyy"
-            placeholderText="Select Date of Birth"
-            className="border border-bordercolor w-full py-1 px-5 rounded focus:!border-t-gray-900"
-          />
-
-          <Typography variant="p" color="blue-gray" className="mb-3 text-xs py-3">
-          (goodplots.com partner broker may call you for further inquiry, verification, sale assistance, scheduling viewing appointments with buyers, informing about our broking services, finalizing terms of engagement with goodplots.com, etc.).
-
-          </Typography>
+          <p className='text-xs py-5'>
+            {
+              `(goodplots.com partner broker may call you for further inquiry, verification, sale assistance, scheduling viewing appointments with buyers, informing about our broking services, finalizing terms of engagement with goodplots.com, etc.)`
+            }
+          </p>
         </div>            
         
 

@@ -12,7 +12,7 @@ import SetupProfile from "./component/forms/setupProfile";
 import UsePrivateRoute from "./hooks/usePrivateRoute";
 import Residentbuy from "./component/forms/properties/Residentbuy";
 import SinglePropertyCard from "./component/card/SinglePropertyCard";
-import Mylistings from "./component/pages/home/Mylistings";
+import Mylistings from "./component/pages/home/components/Mylistings";
 import Testpage from "./component/pages/Testpage";
 
 

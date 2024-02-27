@@ -1,34 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { useUserData } from '../../context/UserContext';
-import ListingTypes from '../homeComponents/listingTypes';
+import { storage } from '../../firebase';
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import {v4} from "uuid";
+
 const Testpage = () => {
-  const {userData} = useUserData(); 
+
+  const[selectedImg, setSelectedImg ] = useState(null)
+  const[imageList, setImageList] = useState([])
+
+  const imageListRef = ref(storage, `properties/`);
+
+  const handleFileUpload = (event)=>{
+    event.preventDefault()
+    console.log("Form submitted");
+    try{
+      const imageRef = ref(storage, `properties/${selectedImg.name + v4()}`) 
+      uploadBytes(imageRef,selectedImg).then((snapshot)=>{
+        getDownloadURL(snapshot.ref).then((url)=>{
+          setImageList((prev) => [...prev, []])
+        })
+      })
+    }catch(error){
+      console.log("Error submitting form", error);
+    }
+  }
+
+  useEffect(()=>{
+    listAll(imageListRef).then((response)=>  
+    response.items.forEach((item)=>{
+      getDownloadURL(item).then((url)=>{
+        setImageList((prev)=> [...prev, url]);
+      })
+    }))
+  },[])
+
   return (
     <div>
-    {
-      userData.map((logUser) => (
-          <div key={logUser.id}>
-            <div className='m-5 p-4 border border-bordercolor rounded-lg block'>
-              <h2 className='font-semibold text-xl text-center'>LOGGED USER DETAILS</h2>
-                <div className='grid justify-center p-5'>
-                  <h6>Username: {logUser?.userName}</h6>
-                  <h6>UserId: {logUser?.authInfo?.userId}</h6>
-                  <h6>City: {logUser?.userCity}</h6>
-                  <h6>Role: {logUser?.userRole}</h6>
-                  <h6>Email: {logUser?.userEmail}</h6>
 
-                </div>
-            
-            </div>
-            
-          </div>
-        ))
-    }
+      <form onSubmit={handleFileUpload}>
+          <input type="file" onChange={(e)=> setSelectedImg(e.target.files[0])}/>
+          <button type='submit' className='bg-black text-white'>Upload</button>
+      </form>
 
-    <div>
-      <ListingTypes/>
+      <div className='p-10 my-20' >
+        {
+          imageList.map((url)=>{
+            return <img src={url} alt="" className='w-40 h-40 m-3'/>
+          })
+        }
+      </div>
+   
+
     </div>
-    </div>
+
   );
 };
 

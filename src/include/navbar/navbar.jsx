@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Drawer, Typography, IconButton, Tooltip, Button, Avatar} from "@material-tailwind/react";
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
-
+import logo from '../../assets/logo/Logo.png';
 
 const Navbar = () => {
 
@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <>
      <div className='flex justify-between w-full px-10 py-5 border-b border-bordercolor'> 
-        <div className='w-1/3 font-semibold text-red text-2xl'><a href="/">GoodPlots</a></div>
+        <div className='w-2/12 grid justify-center'><a href="/"><img src={logo} alt="GoodPlots" className='w-48' /></a></div>
         <div className='flex items-center justify-evenly w-1/3'>
         
             <Tooltip content="Home" placement="bottom">

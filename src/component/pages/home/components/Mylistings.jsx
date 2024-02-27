@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../../../firebase';
+import { auth, db } from '../../../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import UserMyListings from '../../card/User/UserMyListings';
-import { useContextData } from '../../../context/DataContext';
-import { useUserData } from '../../../context/UserContext';
+import UserMyListings from '../../../card/User/UserMyListings';
+import { useContextData } from '../../../../context/DataContext';
+import { useUserData } from '../../../../context/UserContext';
 
 const Mylistings = () => {
 
