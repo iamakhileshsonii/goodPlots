@@ -1,9 +1,10 @@
 import React from 'react';
-import featureImg_1 from '../../assets/images/Home_1.jpg';
-import featureImg_2 from '../../assets/images/Home_2.jpg';
-import featureImg_3 from '../../assets/images/Home_3.jpg';
-import featureImg_4 from '../../assets/images/Home_4.jpg';
-import PageTitle from '../../hooks/pageTitle';
+import featureImg_1 from '../assets/images/Home_1.jpg';
+import featureImg_2 from '../assets/images/Home_2.jpg';
+import featureImg_3 from '../assets/images/Home_3.jpg';
+import featureImg_4 from '../assets/images/Home_4.jpg';
+import PageTitle from '../hooks/pageTitle';
+
 
 import { Card, CardHeader, CardBody, CardFooter, Typography, Button, Tooltip, IconButton, Input,   Avatar } from "@material-tailwind/react";
 

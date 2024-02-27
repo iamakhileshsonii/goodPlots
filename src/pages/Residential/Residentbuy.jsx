@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth, db, storage } from '../../../firebase';
+import { auth, db, storage } from '../../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Card, Input, Checkbox, Button, Typography, Textarea, Radio } from "@material-tailwind/react";
 import ReactDatePicker from 'react-datepicker';

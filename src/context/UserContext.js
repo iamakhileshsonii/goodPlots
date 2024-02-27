@@ -7,6 +7,7 @@ const UserDataContext = createContext();
 export const UserProvider = ({ children }) => {
   const [authId, setAuthId] = useState('');
   const [userData, setUserData] = useState([]);
+  const [userDataLoading, setUserDataLoading] = useState(true); // Introduce loading state
 
   const docRef = collection(db, "gp_users");
 
@@ -33,8 +34,10 @@ export const UserProvider = ({ children }) => {
 
         const filteredUser = fetchedData.filter((user) => user.authInfo.userId === authId);
         setUserData(filteredUser);
+        setUserDataLoading(false); // Update loading state after data is fetched
       } catch (error) {
         console.error("Error fetching user data: ", error);
+        setUserDataLoading(false); // Update loading state in case of error
       }
     }
 
@@ -45,7 +48,11 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserDataContext.Provider value={{ userData }}>
-      {children}
+      {userDataLoading ? ( // Check loading state and display loading message if true
+        <div>Loading...</div>
+      ) : (
+        children
+      )}
     </UserDataContext.Provider>
   );
 };

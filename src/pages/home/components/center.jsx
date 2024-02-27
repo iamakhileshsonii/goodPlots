@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from "../../../../firebase";
-import ListingCards from '../../../card/ListingCards';
-import useData from '../../../../hooks/useData';
+import { auth } from "../../../firebase";
+import ListingCards from '../../../component/card/ListingCards';
+import useData from '../../../hooks/useData';
 
 
 const Center = () => {

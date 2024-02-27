@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../../../../firebase';
+import { auth, db } from '../../../firebase';
 import { collection, deleteDoc, documentId, getDocs } from 'firebase/firestore';
-import UserListings from '../../../card/UserListings';
+import UserListings from '../../../component/card/UserListings';
 import { Link } from 'react-router-dom';
 import {  Tooltip} from "@material-tailwind/react";
-import useData from '../../../../hooks/useData';
+import useData from '../../../hooks/useData';
+
 
 const Right = () => {
 

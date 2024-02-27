@@ -3,8 +3,7 @@ import Left from './components/left';
 import Right from './components/right';
 import Center from './components/center';
 import ClipLoader from "react-spinners/ClipLoader";
-import { auth, db } from '../../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
 
 const Home = () => {
 
@@ -58,9 +57,9 @@ const Home = () => {
       :
     
       <div className='flex justify-evenly flex-wrap py-5 px-5 '>
-        <div className='w-full sm:w-1/4 block text-center'><Left authInfo={authInfo}/></div>
-        <div className='w-full sm:w-1/2 block text-center min-h-screen py-0 px-5'><Center authInfo={authInfo}/></div>
-        <div className='w-full sm:w-1/4 block text-center' ><Right/></div>
+        <div className='w-full sm:w-1/5 block text-center'><Left authInfo={authInfo}/></div>
+        <div className='w-full sm:w-3/5 block text-center min-h-screen py-0 px-5'><Center authInfo={authInfo}/></div>
+        <div className='w-full sm:w-1/5 block text-center' ><Right/></div>
     </div>
     
     }
