@@ -64,40 +64,6 @@ const Residentbuy = () => {
     setSubType(value)
   }   
   
-  // // Handle Form Submit
-  // async function handleSubmit_residentialBuy(event){
-  //   event.preventDefault();
-
-  //   const residentialBuyData = {
-  //     propertyDetail: {
-  //       title: event.target.residentialBuy_title.value,
-  //       featureImg: featureImgURL,
-  //       desc: event.target.residentialBuy_desc.value,
-  //       property_subtype: event.target.residentialBuy_Subtype.value,
-  //       address: event.target.residentialBuy_address.value,
-  //       city: event.target.residentialBuy_city.value,
-  //       expected_price: event.target.residentialBuy_expectedPrice.value,
-  //       total_area: event.target.total_area_super_area.value,
-  //       type: 'Residential Buy',
-
-  //     },
-  //     authInfo: {
-  //       userId: auth.currentUser?.uid,
-  //       userName: auth.currentUser?.displayName,
-  //       userEmail: auth.currentUser?.email
-  //     },
-  //     feedDetails:{
-  //       publishedOn: serverTimestamp(),
-  //       status: 'pending'
-  //     }
-  //   }
-
-  //   await addDoc(postRef, residentialBuyData);
-  //   navigate("/home")
-  //   console.log("Residential Form Submitted successdully")
-  // }
-
-
   // Handle Form Submit
   async function handleSubmit_residentialBuy(event){
     event.preventDefault();

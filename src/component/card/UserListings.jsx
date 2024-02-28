@@ -13,10 +13,10 @@ const UserListings = ({myproperty}) => {
     const{authInfo, propertyDetail, id} = myproperty;
   
     async function handleDelete(id){
-      const document = await doc(db, 'gp_properties', id);
+      const document = doc(db, 'gp_properties', id);
       deleteDoc(document);
-      navigate('/home')
-      console.log("Document Deleted Successfully");
+      alert("Listing Deleted Successfully!")
+      navigate('/home') 
     } 
 
   return (
