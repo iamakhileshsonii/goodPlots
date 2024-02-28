@@ -24,6 +24,7 @@ export const DataProvider = ({ children }) => {
         console.error("Error fetching data:", error);
         setIsLoading(false);
       }
+      console.log("GP DATA FETCHED!")
     }
     fetchProperties();
   }, []);

@@ -1,53 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../../../firebase';
-import { collection, deleteDoc, documentId, getDocs } from 'firebase/firestore';
-import UserListings from '../../../component/card/UserListings';
 import { Link } from 'react-router-dom';
 import {  Tooltip} from "@material-tailwind/react";
-import useData from '../../../hooks/useData';
-
+import { useContextData } from '../../../context/DataContext';
+import { useUserData } from '../../../context/UserContext';
+import MyListings from './cards/MyListings';
 
 const Right = () => {
-
-  const {gpData, Loading} = useData();
-  const [mylistings, setMyListings] = useState([]);
-  const postRef = collection(db, 'gp_properties');
   
-  const [currentAuthId, setCurrentAuthId] = useState();
+  const {gpData} = useContextData()
+  const {userData, userDataLoading} = useUserData()
+  const [myListings, setMyListings] = useState([]);
 
+  useEffect(() => {
+    if (userData && userData.length > 0 && gpData) {
+      const filter = gpData.filter((list) => list.authInfo && list.authInfo.userId === userData[0]?.authInfo?.userId);
+      setMyListings(filter);
+      console.log(userData[0]?.authInfo?.userId);
+    }
+  }, []);
   
-  useEffect(()=>{
-    async function fetchmylistings(){
-      const data = await getDocs(postRef);
-      setMyListings(data.docs.map((document)=>({
-        ...document.data(),
-        id: document.id
-      })))
-    }
-    fetchmylistings()
-  }, [])
-
-  useEffect(()=>{
-    function fetchAuthId(){
-      if(auth.currentUser){
-        setCurrentAuthId(auth.currentUser.uid);
-      }
-    }
-    fetchAuthId();
-
-  },[])
-
-
-  // Filter listings of current loggedIn user only
-  const currentUserListing = mylistings.filter(
-    (listing)=> listing.authInfo.userId === currentAuthId
-    )
+  
 
   return (
     <div className='px-5'>
       <div className='flex justify-between w-full p-5' >
         <h4 className='border-b-4 border-red font-semibold'>My Listings</h4>
-
         <Tooltip content="Manage Listings" placement="bottom">
           <Link to="/mylistings">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -55,13 +32,16 @@ const Right = () => {
           </svg>
           </Link>
         </Tooltip>
-        
       </div>
-      {
-        currentUserListing.map((list, index)=>(
-          <UserListings myproperty={list} key={index}  />
-        ))
-      }
+
+      <div>
+        {
+          myListings && myListings.map((list)=>(
+            <MyListings key={list.id} property={list}/>
+          ))
+        }
+      
+      </div>
       
     </div>
 

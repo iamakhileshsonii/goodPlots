@@ -109,13 +109,14 @@ const Residentbuy = () => {
   const validateForm = () => {
     let errors = {};
   
-    if (!title){ alert("Fill title") };
-    if (!desc) {alert("Description is required")};
-    if (!address) alert("Address is required");
-    if (!city) alert("City is required");
+    if (!title)alert("Fill title")
+    if (!desc) alert("Description is required")
+    if (!address) alert("Address is required")
+    if (!city) alert("City is required")
     if (!expectedPrice) alert("Expected price is required")
     if (!totalArea) alert("Total area is required")
-  
+    if (!state) alert("State is required")
+    if (!locality) alert("Locality is required")
     // Add more validation as needed
   
     setValidationErrors(errors);

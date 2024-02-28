@@ -18,8 +18,7 @@ const Login = () => {
     
     try {
       // Use Firebase authentication to sign in
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log(userCredential);
+      await signInWithEmailAndPassword(auth, email, password);
       setIsAuth(true);
       navigate('/home');
     } catch (error) {

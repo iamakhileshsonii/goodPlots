@@ -38,10 +38,7 @@ const handleOpen = (value) => setOpen(open === value ? 0 : value);
 return (
   <>
     <div className='block justify-evenly'>
-      {
-        fetchingCurrentUser && fetchingCurrentUser ? <Link to='/setupprofile'><p className='m-2 py-1 px-2 rounded-md border border-bordercolor font-semibold '>Setup Profile</p></Link>
-        :
-        <>
+
       <div className='flex gap-2 w-full justify-left '>
             <img src={userData[0]?.userDp || ""} className='h-12 w-12 rounded-full self-center'/>   
               <div className='block text-left'>
@@ -91,8 +88,6 @@ return (
 
 
         </div>
-      </>
-      }
     
     </div>
 

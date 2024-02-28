@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from "../../../firebase";
 import ListingCards from '../../../component/card/ListingCards';
-import useData from '../../../hooks/useData';
+import { useContextData } from '../../../context/DataContext';
+import { useUserData } from '../../../context/UserContext';
 
 
 const Center = () => {
-  const { gpData, isLoading } = useData();
-  const [currentAuthId, setCurrentAuthId] = useState();
-
-  // Fetch currently loggedIn user ID
-  useEffect(() => {
-    function fetchAuthId() {
-      if (auth.currentUser) {
-        setCurrentAuthId(auth.currentUser.uid);
-      }
-    }
-    fetchAuthId();
-
-  }, []);
+  const {gpData, isLoading} = useContextData();
+  const {userData} = useUserData();
 
   // Display loading text while data is being fetched
   if (isLoading) {
@@ -26,7 +16,7 @@ const Center = () => {
 
   // Filter listings which are not listed by current user
   const filterListings = gpData.filter(
-    (list) => list.authInfo.userId !== currentAuthId
+    (list) => list.authInfo.userId !== userData?.authInfo?.userId && list.feedDetails.status === "published"
   );
 
   return (
