@@ -4,6 +4,7 @@ import {  Tooltip} from "@material-tailwind/react";
 import { useContextData } from '../../../context/DataContext';
 import { useUserData } from '../../../context/UserContext';
 import MyListings from './cards/MyListings';
+import ConfirmDelete from './cards/ConfirmDelete';
 
 const Right = () => {
   

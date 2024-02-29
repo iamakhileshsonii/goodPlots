@@ -94,6 +94,7 @@ const Residentbuy = () => {
       },
       feedDetails:{
         publishedOn: serverTimestamp(),
+        kyc: 'pending',
         status: 'pending'
       }
     }
