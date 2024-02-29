@@ -7,10 +7,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import {v4} from "uuid";
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import Kyc from '../home/components/cards/Kyc';
 
 
 
 const Residentbuy = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(!open);
+  
 
   const navigate = useNavigate();
 
@@ -343,9 +347,12 @@ const Residentbuy = () => {
         <Button className="mt-6" fullWidth type='submit'>
           Submit
         </Button>
+        
       </form>
     </Card>
+    <Kyc/>
     </div>
+    
   )
 }
 
