@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {auth, db} from '../../firebase';
+import {auth, db} from '../../../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@material-tailwind/react';
-import { useUserData } from '../../context/UserContext';
+import { useUserData } from '../../../../context/UserContext';
 
 const ListingCards = ({prop, propid}) => {
   const{userData} = useUserData();
@@ -36,25 +36,28 @@ const ListingCards = ({prop, propid}) => {
   }
 
   return (
-    <div className='flex border border-bordercolor rounded-lg text-left p-3 my-2'>
-      <div className='w-1/5 block p-2'>
+    <div className='w-full flex border border-bordercolor rounded-lg text-left p-3 my-2'>
+      <div className='w-2/5 sm:w-1/4  block p-2'>
         <img src={propertyDetail.featureImg} className='max-h-80 w-full rounded-md'/>
       </div>
 
-    <div className='block w-4/5'>
-    <h6 className='font-semibold text-xl'>{propertyDetail.title}</h6>
-      <p className='text-xs'>{propertyDetail.desc}</p>
+    <div className='w-3/5 sm:w-3/4  block'>
+      <div className='block sm:flex justify-between '>
+        <h6 className='text-sm sm:text-xl font-semibold '>{propertyDetail.title}</h6>
+        <p className='p-1 text-xs font-bold text-red sm:text-lg'>{propertyDetail.expected_price}</p>
+      </div>
+   
       
-      <div className='flex gap-2'>
-      <p className='rounded p-1 my-2 border border-bordercolor text-xs'>{propertyDetail.property_subtype}</p>
-          <div className='flex px-2 rounded p-1 my-2 border border-bordercolor text-xs'>
+      <div className='flex gap-2 flex-wrap'>
+      <p className='rounded p-1 my-2 text-xs'>{propertyDetail.property_subtype}</p>
+          <div className='flex px-2 rounded  text-xsitems-center'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
             <p className='text-xs self-center italic'>{userData[0]?.userName}</p>
           </div>
 
-          <div className='flex px-2 rounded p-1 my-2 border border-bordercolor text-xs'>
+          <div className='flex px-2 rounded items-center'>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />

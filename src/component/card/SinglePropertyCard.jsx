@@ -30,26 +30,26 @@ const [authUser, setAuthUser] = useState([]);
 
 
   return (
-    <div className='block px-28 py-16'>
+    <div className='block p-5 sm:px-28 sm:py-16'>
         <div className='flex justify-between py-5'>
-            <h4 className='text-3xl font-semibold underline underline-offset-8 decoration-red'>{singleProperty.propertyDetail?.title}</h4>
-            <p className='text-xs px-5 py-2 bg-red text-white rounded-lg'>₹ {singleProperty.propertyDetail?.expected_price}</p>
+            <h4 className='text-lg sm:text-3xl font-semibold underline underline-offset-8 decoration-red'>{singleProperty.propertyDetail?.title}</h4>
         </div>
 
-        <div className='block w-full rounded-3xl'>
-            <img src={poster} alt="Property Wallpaper" className='w-full object-cover object-center h-96 rounded-3xl '/>
+        <div className='block w-full sm:rounded-md text-3xl'>
+            <img src={poster} alt="Property Wallpaper" className='w-full object-cover object-center h-36 sm:h-96 rounded-sm sm:rounded-md '/>
         </div>
 
-        <div className='flex justify-between py-5'>
-            <div className='w-2/3 p-5 rounded-lg'>
+        <div className='block sm:flex justify-between py-5'>
+            <div className='w-full sm:w-2/3 p-5 rounded-lg'>
                 <h5 className='text-xl font-semibold underline underline-offset-8 decoration-red'>About Property</h5>
                 <p className='py-5'>{singleProperty.propertyDetail?.desc}</p>
             </div>
 
-            <div className='block w-1/4'>  
+            <div className='block w-full sm:w-1/4'>  
                 <div className='border border-bordercolor m-4 p-5 rounded-lg'>
                     <h5 className='text-xl font-semibold underline underline-offset-8 decoration-red'>Property Information</h5>
                     <ul className='py-5'>
+                        <li className='flex'>Expected Price:&nbsp;&nbsp;<p className='text-red font-bold'>₹ {singleProperty.propertyDetail?.expected_price}</p></li>
                         <li>Total Area:  {singleProperty.propertyDetail?.total_area} Sq.Ft.</li>
                         <li>Facing: North-East</li>
                         <li>Type: {singleProperty.propertyDetail?.property_subtype}</li>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from "../../../firebase";
-import ListingCards from '../../../component/card/ListingCards';
+import ListingCards from './cards/ListingCards';
 import { useContextData } from '../../../context/DataContext';
 import { useUserData } from '../../../context/UserContext';
 
@@ -26,11 +26,14 @@ const Center = () => {
           <h4 className='border-b-4 border-red font-semibold'>All Listings</h4>
         </div>
 
+        <div>
         {filterListings.map((property) => (
           
-            <ListingCards prop={property} propid={property.id}  key={property.id} />
-        
-        ))}
+          <ListingCards prop={property} propid={property.id}  key={property.id} />
+      
+      ))}
+        </div>
+
       </div>
     </>
   );
