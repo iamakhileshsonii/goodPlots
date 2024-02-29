@@ -14,6 +14,8 @@ import Residentbuy from "./pages/Residential/Residentbuy";
 import SinglePropertyCard from "./component/card/SinglePropertyCard";
 import Mylistings from "./pages/home/components/Mylistings";
 import Testpage from "./pages/Testpage";
+import Right from "./pages/home/components/right";
+import AllListings from "./pages/Explore/AllListings";
 
 
 
@@ -25,13 +27,37 @@ function App() {
         <Routes>
           <Route path="/" element={<CommonHome />} />
           <Route
-            path="/Home"
+            path="/explore"
             element={
               <UsePrivateRoute>
                 <Home />
               </UsePrivateRoute>
             }
+            
+          >
+
+          <Route
+            path="residentialbuy"
+            element={     
+                <Residentbuy />
+            }
           />
+
+<Route
+            path="mylistings"
+            element={     
+                <Right />
+            }
+          />
+
+<Route
+            path="alllistings"
+            element={     
+                <AllListings />
+            }
+          />
+
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         
@@ -54,14 +80,7 @@ function App() {
           />
           <Route path="*" element={<NotFound />} />
 
-          <Route
-            path="/residentialbuy"
-            element={
-              <UsePrivateRoute>
-                <Residentbuy />
-              </UsePrivateRoute>
-            }
-          />
+          
 
           <Route
             path="/property/:propertyId"

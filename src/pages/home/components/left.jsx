@@ -96,7 +96,7 @@ return (
         <AccordionHeader onClick={() => handleOpen(1)} className='text-lg font-semibold text-black hover:text-red'>List a property</AccordionHeader>
         <AccordionBody>
           <div className='block'>
-          <Link to="/residentialbuy"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Residential Buy</p></Link>
+          <Link to="/explore/residentialbuy"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Residential Buy</p></Link>
         <Link to="/residentialform"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Residential Rent</p></Link>
         <Link to="/"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Commercial Buy</p></Link>
         <Link to="/"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Commercial Rent</p></Link>
@@ -116,6 +116,26 @@ return (
         </AccordionBody>
       </Accordion> : ""
       }
+
+<Accordion open={open === 3}>
+        <AccordionHeader onClick={() => handleOpen(3)} className='text-lg font-semibold text-black hover:text-red'>Listings</AccordionHeader>
+        <AccordionBody>
+          <div className='block'>
+          <Link to="/explore/mylistings"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>My Listings</p></Link>
+          </div>
+        
+        </AccordionBody>
+      </Accordion>
+
+      <Accordion open={open === 4}>
+        <AccordionHeader onClick={() => handleOpen(4)} className='text-lg font-semibold text-black hover:text-red'>Explore</AccordionHeader>
+        <AccordionBody>
+          <div className='block'>
+          <Link to="/explore/alllistings"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>All Listings</p></Link>
+          </div>
+        
+        </AccordionBody>
+      </Accordion>
 </div>
   </>
 )};
