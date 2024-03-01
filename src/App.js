@@ -16,7 +16,8 @@ import Mylistings from "./pages/home/components/Mylistings";
 import Testpage from "./pages/Testpage";
 import Right from "./pages/home/components/right";
 import AllListings from "./pages/Explore/AllListings";
-
+import ListingTypes from "./component/homeComponents/listingTypes";
+import Profile from "./pages/Profile/Profile";
 
 
 function App() {
@@ -26,36 +27,21 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CommonHome />} />
-          <Route
-            path="/explore"
-            element={
+          
+          <Route path="/explore" element={
               <UsePrivateRoute>
                 <Home />
-              </UsePrivateRoute>
-            }
-            
-          >
+              </UsePrivateRoute>}>
 
-          <Route
-            path="residentialbuy"
-            element={     
-                <Residentbuy />
-            }
-          />
+          <Route path="residentialbuy" element={<Residentbuy />}/>
 
-<Route
-            path="mylistings"
-            element={     
-                <Right />
-            }
-          />
+          <Route path="mylistings" element={<Right />}/>
 
-<Route
-            path="alllistings"
-            element={     
-                <AllListings />
-            }
-          />
+          <Route path="alllistings" element={<AllListings />} />
+
+          <Route path="listingtypes" element={<ListingTypes/>} />
+
+          <Route path="profile" element={<Profile/>} />
 
           </Route>
           <Route path="/login" element={<Login />} />

@@ -38,7 +38,7 @@ const CommonHome = () => {
   ]
 
   return (
-    <div className='block justify-center'>
+    <div className='block justify-left sm:justify-center'>
       <section className="bg-white dark:bg-gray-900">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
@@ -57,8 +57,8 @@ const CommonHome = () => {
         </div>
       </section>
 
-      <h2 className='uppercase font-semibold text-lg border-b-4 border-red w-1/6 ml-60'>Top Properties</h2>
-      <div className='flex px-56 py-10'>
+      <h2 className=' text-left w-full uppercase font-semibold text-lg border-b-4 border-red w-1/6 ml-1 sm:ml-60'>Top Properties</h2>
+      <div className='block sm:flex px-10 sm:px-56 sm:py-10'>
         <Card className="w-full max-w-[26rem] shadow-lg">
         <CardHeader floated={false} color="blue-gray">
           <img
@@ -644,8 +644,8 @@ const CommonHome = () => {
         </Card>
       </div>
 
-      <h2 className='uppercase font-semibold text-lg border-b-4 border-red w-1/6 ml-60 pt-20'>Testimonials</h2>
-      <div className='flex flex-wrap py-20 px-56 justify-evenly '>
+      <h2 className='uppercase font-semibold text-lg border-b-4 border-red w-1/6 ml-10 sm:ml-60 pt-20'>Testimonials</h2>
+      <div className='flex flex-wrap py-20 px-10 sm:px-56 justify-evenly '>
 
       {
         testimonials.map((testimonial)=>(

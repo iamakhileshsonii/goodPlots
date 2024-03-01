@@ -15,7 +15,7 @@ const Mylistings = () => {
     // Get all document 
     const {gpData} = useContextData();
 
-    // Get logged user data
+    // Get logged user data 
     const {userData} = useUserData();
 
     useEffect(() => {
