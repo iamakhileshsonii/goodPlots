@@ -3,6 +3,7 @@ import { Drawer, Typography, IconButton, Tooltip, Button, Avatar} from "@materia
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import logo from '../../assets/logo/Logo.png';
+import OffCanvas from './components/OffCanvas';
 
 const Navbar = () => {
 
@@ -60,7 +61,7 @@ const Navbar = () => {
 
         </div>
 
-        <div className='flex justify-evenly w-1/3'>
+        {/* <div className='flex justify-evenly w-1/3'>
             <React.Fragment>
       <div className="flex flex-wrap gap-4">
         
@@ -178,7 +179,9 @@ const Navbar = () => {
     </React.Fragment>
 
 
-        </div>
+        </div> */}
+
+        <OffCanvas/>
 
 
         
