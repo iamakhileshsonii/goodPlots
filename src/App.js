@@ -18,7 +18,9 @@ import Right from "./pages/home/components/right";
 import AllListings from "./pages/Explore/AllListings";
 import ListingTypes from "./component/homeComponents/listingTypes";
 import Profile from "./pages/Profile/Profile";
-
+import ResidentialRent from "./pages/Residential/ResidentialRent";
+import CommercialBuy from "./pages/Residential/CommercialBuy";
+import CommercialRent from "./pages/Residential/CommercialRent";
 
 function App() {
   return (
@@ -33,8 +35,6 @@ function App() {
                 <Home />
               </UsePrivateRoute>}>
 
-          <Route path="residentialbuy" element={<Residentbuy />}/>
-
           <Route path="mylistings" element={<Right />}/>
 
           <Route path="alllistings" element={<AllListings />} />
@@ -42,6 +42,14 @@ function App() {
           <Route path="listingtypes" element={<ListingTypes/>} />
 
           <Route path="profile" element={<Profile/>} />
+
+          <Route path="residentialbuy" element={<Residentbuy />}/>
+
+          <Route path="residentialrent" element={<ResidentialRent/>} />
+
+          <Route path="commercialbuy" element={<CommercialBuy/>} />
+
+          <Route path="commercialrent" element={<CommercialRent/>} />
 
           </Route>
           <Route path="/login" element={<Login />} />

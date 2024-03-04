@@ -54,9 +54,9 @@ return (
         <AccordionBody>
           <div className='block'>
           <Link to="/explore/residentialbuy"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Residential Buy</p></Link>
-        <Link to="/residentialform"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Residential Rent</p></Link>
-        <Link to="/"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Commercial Buy</p></Link>
-        <Link to="/"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Commercial Rent</p></Link>
+        <Link to="/explore/residentialrent"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Residential Rent</p></Link>
+        <Link to="/explore/commercialbuy"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Commercial Buy</p></Link>
+        <Link to="/explore/commercialrent"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Commercial Rent</p></Link>
           </div>
         
         </AccordionBody>
