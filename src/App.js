@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Navbar from "./include/navbar/navbar";
-import Home from "./pages/home";  
+import Home from "./pages/home";
 import Login from "./pages/Login/login";
-import Register from "./pages/Register/register"
+import Register from "./pages/Register/register";
 import CommonHome from "./pages/commonHome";
 import Footer from "./include/footer";
 import FeaturedRes from "./assets/topresidencies/featuredRes";
@@ -21,6 +21,7 @@ import Profile from "./pages/Profile/Profile";
 import ResidentialRent from "./pages/Residential/ResidentialRent";
 import CommercialBuy from "./pages/Residential/CommercialBuy";
 import CommercialRent from "./pages/Residential/CommercialRent";
+import MyAppointments from "./pages/Appointments/MyAppointments";
 
 function App() {
   return (
@@ -29,32 +30,36 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CommonHome />} />
-          
-          <Route path="/explore" element={
+
+          <Route
+            path="/explore"
+            element={
               <UsePrivateRoute>
                 <Home />
-              </UsePrivateRoute>}>
+              </UsePrivateRoute>
+            }
+          >
+            <Route path="mylistings" element={<Right />} />
 
-          <Route path="mylistings" element={<Right />}/>
+            <Route path="alllistings" element={<AllListings />} />
 
-          <Route path="alllistings" element={<AllListings />} />
+            <Route path="listingtypes" element={<ListingTypes />} />
 
-          <Route path="listingtypes" element={<ListingTypes/>} />
+            <Route path="profile" element={<Profile />} />
 
-          <Route path="profile" element={<Profile/>} />
+            <Route path="appointments" element={<MyAppointments />} />
 
-          <Route path="residentialbuy" element={<Residentbuy />}/>
+            <Route path="residentialbuy" element={<Residentbuy />} />
 
-          <Route path="residentialrent" element={<ResidentialRent/>} />
+            <Route path="residentialrent" element={<ResidentialRent />} />
 
-          <Route path="commercialbuy" element={<CommercialBuy/>} />
+            <Route path="commercialbuy" element={<CommercialBuy />} />
 
-          <Route path="commercialrent" element={<CommercialRent/>} />
-
+            <Route path="commercialrent" element={<CommercialRent />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-        
+
           <Route path="/featuredRes" element={<FeaturedRes />} />
           <Route
             path="/residentialform"
@@ -73,8 +78,6 @@ function App() {
             }
           />
           <Route path="*" element={<NotFound />} />
-
-          
 
           <Route
             path="/property/:propertyId"

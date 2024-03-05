@@ -1,32 +1,70 @@
 import React, { useState } from 'react';
 import {
-    Button,
     Dialog,
     DialogHeader,
     DialogBody,
     DialogFooter,
-    Tooltip,
   } from "@material-tailwind/react";
   import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { useUserData } from '../../../../context/UserContext';
+import { db } from '../../../../firebase';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+
+
 
 const ScheduleAppointment = ({listing}) => {
 
   const {propertyDetail, authInfo, property}  = listing  
+  const {userData} = useUserData();
   
-  const [open, setOpen] = React.useState(false);
-   
-    const handleOpen = () => setOpen(!open);
+  const [open, setOpen] = React.useState(false);  
+  const handleOpen = () => setOpen(!open);
 
-    const handleAppointment = (event) =>{
-      event.preventDefault();
-      console.log("Appointment Booked", propertyDetail.title);
-      handleOpen()
+  // Schedule Appointment Fields
+  const [userName, setUserName] = useState(userData[0].userName || '');
+  const [userEmail, setUserEmail] = useState(userData[0].userEmail || '');
+  const [userCity, setUserCity] = useState(userData[0].userCity || '');
+  const [userId, setUserId] = useState(authInfo.userId)
+
+  const handleAppointment = async (event) =>{
+    event.preventDefault();
+    const docRef = collection(db, 'gp_appointments')
+    const appointmentData = {
+      client:{
+        clientId: userId,
+        clientName: userName,
+        clientEmail: userEmail,
+        clientCity: userCity 
+      },
+      author:{
+        authorId: authInfo.userId,
+        authorName: authInfo.userName,
+        authorEmail: authInfo.userEmail,
+      },
+      listing:{
+        listingId: listing.id,
+        listingTitle: propertyDetail.title
+      },
+      appointmentInfo:{
+        status: 'pending',
+        createdAt: serverTimestamp(),
+      }
     }
+    addDoc(docRef, appointmentData)
+    console.log("Appointment Booked")
+    handleOpen()
+  }
 
   // Date Picker
   const [startDate, setStartDate] = useState(new Date());
+
+  const handleCancel = () =>{
+    handleOpen();
+  }
+
+  
    
     return (
       <>
@@ -41,12 +79,26 @@ const ScheduleAppointment = ({listing}) => {
           <DialogBody>
           <div className='p-2 my-5 '>    
           <form onSubmit={handleAppointment} className='grid'>
-                <input type="text" value="Akhilesh Soni" className='border border-bordercolor py-1 px-2 rounded-md m-1'/>
-                <input type="email" value="iamakhileshsoni@gmail.com"   className='border border-bordercolor py-1 px-2 rounded-md m-1'/>
-                <input type="text" value="City"  className='border border-bordercolor py-1 px-2 rounded-md m-1'/>
-                <input type="text" placeholder='Pick a date'  className='border border-bordercolor py-1 px-2 rounded-md m-1'/>
-                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                <button type='submit'  className="bg-red text-white font-semibold px-2 py-1 rounded-md m-1">Schedule</button>
+
+          <div className='flex justify-between'>
+            <input type="text" value={userName} className='border border-bordercolor py-1 px-2 rounded-md m-1 w-1/2' onChange={(e)=> setUserName(e.target.value)}/>
+            <input type="email" value={userEmail}   className='border border-bordercolor py-1 px-2 rounded-md m-1 w-1/2' onChange={(e)=> setUserEmail(e.target.value)}/>
+          </div>
+
+          <div className='flex justify-between '>
+          <input type="text" value={userCity}  className='border border-bordercolor py-1 px-2 rounded-md m-1 w-1/2' onChange={(e)=> setUserCity(e.target.value)}/>
+            <div className='flex gap-4 border border-bordercolor '>
+              <p>Appointment Date</p>
+              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className='py-1 px-2 w-full'/>
+            </div>
+          
+          </div>
+
+          <div className='flex justify-between mt-6 '>
+          <p className="text-black font-semibold px-2 py-1 rounded-md m-1 border border-bordercolor w-1/2 text-center" onClick={handleOpen} >Cancel</p>
+          <button type='submit'  className="bg-red text-white font-semibold px-2 py-1 rounded-md m-1 w-1/2">Schedule</button>
+          </div>
+                
             </form>
           </div>
           </DialogBody>
