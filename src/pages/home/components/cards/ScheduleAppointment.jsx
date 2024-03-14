@@ -77,20 +77,23 @@ const ScheduleAppointment = ({listing}) => {
           <DialogHeader className="justify-center">Book An Appointment</DialogHeader>
           <h4 className='text-center'>Appointment with {propertyDetail.title} </h4>
           <DialogBody>
-          <div className='p-2 my-5 '>    
+          <div className='p-2 '>    
           <form onSubmit={handleAppointment} className='grid'>
+
+          <div className='flex justify-center self-center'>
+              <p className='self-center font-semibold'>Appointment Date</p>
+              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className='py-1 px-2 w-full font-bold text-red underline underline-offset-4 text-left'/>
+            </div>
+
 
           <div className='flex justify-between'>
             <input type="text" value={userName} className='border border-bordercolor py-1 px-2 rounded-md m-1 w-1/2' onChange={(e)=> setUserName(e.target.value)}/>
             <input type="email" value={userEmail}   className='border border-bordercolor py-1 px-2 rounded-md m-1 w-1/2' onChange={(e)=> setUserEmail(e.target.value)}/>
           </div>
 
-          <div className='flex justify-between '>
+          <div className='flex justify-center self-center'>
           <input type="text" value={userCity}  className='border border-bordercolor py-1 px-2 rounded-md m-1 w-1/2' onChange={(e)=> setUserCity(e.target.value)}/>
-            <div className='flex gap-4 border border-bordercolor '>
-              <p>Appointment Date</p>
-              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className='py-1 px-2 w-full'/>
-            </div>
+              <p className='border border-bordercolor w-1/2 self-center py-1 px-2 rounded-md '>{userData[0].userPhone}</p>
           
           </div>
 

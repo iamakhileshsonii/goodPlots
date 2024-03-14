@@ -2,7 +2,14 @@ import React from 'react'
 
 const AppointmentCard = ({detail}) => {
 const appointment = detail
-console.log('Single Appointment Card',appointment)
+
+const handleReject = ()=>{
+    console.log("Appointment Rejected",detail.id)
+}
+
+const handleAccept = ()=>{
+    console.log("Appointment Accepted",detail.id)
+}
   return (
     <div className='p-2 my-2 border border-bordercolor rounded-md'>
         <div className='flex justify-between'>
@@ -23,8 +30,8 @@ console.log('Single Appointment Card',appointment)
                 <p>9934212301</p>
             </div>
             <div className='flex gap-4 items-center'>
-                <p className='text-red '>Reject</p>
-                <button className='text-white font-semibold py-1 px-2 bg-red rounded-md'>Accept</button>
+                <p className='text-red' onClick={handleReject}>Reject</p>
+                <button className='text-white font-semibold py-1 px-2 bg-red rounded-md' onClick={handleAccept}>Accept</button>
             </div>
         </div>
     </div>

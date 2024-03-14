@@ -104,7 +104,7 @@ const Residentbuy = () => {
     }
 
     await addDoc(postRef, residentialBuyData);
-    navigate("/home")
+    navigate("/explore")
     console.log("Residential Form Submitted successdully")
   }
   }
