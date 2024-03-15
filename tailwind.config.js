@@ -10,6 +10,7 @@ module.exports = withMT({
         orange: "#fea400",
         bordercolor: "#C7C7C7",
         cardbg: "#f6f6f6",
+        lightText: "#969696",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

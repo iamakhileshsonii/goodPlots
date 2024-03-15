@@ -75,7 +75,6 @@ return (
         <AccordionHeader onClick={() => handleOpen(3)} className='text-lg font-semibold text-black hover:text-red py-1 my-1'>Personal</AccordionHeader>
         <AccordionBody>
           <div className='block'>
-          <Link to="/explore/mylistings"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>My Listings</p></Link>
           <Link to="/explore/appointments"><p className='m-1 p-1 text-left text-black hover:underline underline-offset-4 decoration-2 decoration-red'>Appointments</p></Link>
           </div>
         

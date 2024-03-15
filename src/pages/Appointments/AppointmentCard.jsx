@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { db } from '../../firebase';
+import { deleteDoc, doc } from 'firebase/firestore';
 
 const AppointmentCard = ({detail}) => {
 const appointment = detail
 
-const handleReject = ()=>{
+
+const handleReject = async ()=>{
+    const appointment = doc(db, 'gp_appointments', detail.id)
+    await deleteDoc(appointment)
     console.log("Appointment Rejected",detail.id)
 }
 
@@ -15,6 +20,7 @@ const handleAccept = ()=>{
         <div className='flex justify-between'>
             <div className='flex gap-4'>
                 <h4 className='font-semibold text-lg'>{appointment.client.clientName}</h4>
+                <p>{detail.id}</p>
                 <p>24th Feb 2024</p>
             </div>
             <div className='flex gap-4'>

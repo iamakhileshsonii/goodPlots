@@ -23,7 +23,7 @@ const Right = () => {
   
 
   return (
-    <div className='px-5'>
+    <div className='px-1'>
       <div className='flex justify-between w-full p-5' >
         <h4 className='border-b-4 border-red font-semibold'>My Listings</h4>
       </div>

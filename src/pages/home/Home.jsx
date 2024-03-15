@@ -58,8 +58,8 @@ const Home = () => {
     
       <div className='flex justify-evenly flex-wrap py-5 px-2 sm:px-5 '>
         <div className='hidden sm:w-2/12 sm:block text-center'><Left authInfo={authInfo}/></div>
-        <div className='w-full sm:w-4/5 block text-center min-h-screen py-0 px-0 sm:px-5 m-5 border border-bordercolor rounded-md'><Center authInfo={authInfo}/></div>
-        {/* <div className='w-full sm:w-1/5 block text-center' ><Right/></div> */}
+        <div className='w-full sm:w-6/12 block text-center min-h-screen py-0 px-0 sm:px-5 m-5'><Center/></div>
+        <div className='w-full sm:w-1/5 grid' ><Right/></div>
     </div>
     
     }

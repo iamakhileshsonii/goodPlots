@@ -23,10 +23,10 @@ const ScheduleAppointment = ({listing}) => {
   const handleOpen = () => setOpen(!open);
 
   // Schedule Appointment Fields
-  const [userName, setUserName] = useState(userData[0].userName || '');
-  const [userEmail, setUserEmail] = useState(userData[0].userEmail || '');
-  const [userCity, setUserCity] = useState(userData[0].userCity || '');
-  const [userId, setUserId] = useState(authInfo.userId)
+  const [userName, setUserName] = useState(userData[0]?.userName || '');
+  const [userEmail, setUserEmail] = useState(userData[0]?.userEmail || '');
+  const [userCity, setUserCity] = useState(userData[0]?.userCity || '');
+  const [userId, setUserId] = useState(authInfo?.userId)
 
   const handleAppointment = async (event) =>{
     event.preventDefault();
