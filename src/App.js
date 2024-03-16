@@ -31,14 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CommonHome />} />
 
-          <Route
-            path="/explore"
-            element={
-              <UsePrivateRoute>
-                <Home />
-              </UsePrivateRoute>
-            }
-          >
+          <Route path="/explore" element={<Home />}>
             <Route path="mylistings" element={<Right />} />
 
             <Route path="alllistings" element={<AllListings />} />
@@ -61,41 +54,16 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           <Route path="/featuredRes" element={<FeaturedRes />} />
-          <Route
-            path="/residentialform"
-            element={
-              <UsePrivateRoute>
-                <ResidentialForm />
-              </UsePrivateRoute>
-            }
-          />
-          <Route
-            path="/setupprofile"
-            element={
-              <UsePrivateRoute>
-                <SetupProfile />
-              </UsePrivateRoute>
-            }
-          />
+          <Route path="/residentialform" element={<ResidentialForm />} />
+          <Route path="/setupprofile" element={<SetupProfile />} />
           <Route path="*" element={<NotFound />} />
 
           <Route
             path="/property/:propertyId"
-            element={
-              <UsePrivateRoute>
-                <SinglePropertyCard />
-              </UsePrivateRoute>
-            }
+            element={<SinglePropertyCard />}
           />
 
-          <Route
-            path="/mylistings"
-            element={
-              <UsePrivateRoute>
-                <Mylistings />
-              </UsePrivateRoute>
-            }
-          />
+          <Route path="/mylistings" element={<Mylistings />} />
 
           <Route path="/testpage" element={<Testpage />} />
         </Routes>
