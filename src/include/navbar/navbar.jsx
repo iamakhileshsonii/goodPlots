@@ -4,8 +4,12 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import logo from '../../assets/logo/Logo.png';
 import OffCanvas from './components/OffCanvas';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
 
   const[isAuth, setIsAuth] = useState( JSON.parse(localStorage.getItem("isAuth")) || false);
   const [openRight, setOpenRight] = React.useState(false);
@@ -15,8 +19,9 @@ const Navbar = () => {
   const handleLogout = ()=>{
     signOut(auth)
     localStorage.setItem("isAuth", false)
-    console.log(isAuth)
     setIsAuth(false)
+    navigate('/login')
+
   }
 
 
@@ -51,15 +56,25 @@ const Navbar = () => {
 
             </Tooltip>
 
-            <Tooltip content="Logout" placement="bottom">
+            {
+              isAuth ? 
+              <Tooltip content="Logout" placement="bottom">
             <p onClick={handleLogout}>Logout</p>
             </Tooltip>
+            :
+            <Tooltip content="Login" placement="bottom">
+            <Link to="/login"><p>Login</p></Link>
+            </Tooltip>
+
+
+            }
+            
 
 
         </div>
 
-        <div className="block sm:hidden">
-        <OffCanvas />
+        <div className="block sm:hidden">    
+            <OffCanvas /> 
         </div>
         
 

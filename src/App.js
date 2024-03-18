@@ -26,8 +26,8 @@ import MyAppointments from "./pages/Appointments/MyAppointments";
 function App() {
   return (
     <>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<CommonHome />} />
 

@@ -6,6 +6,7 @@ import { useUserData } from '../../../context/UserContext';
 import MyListings from './cards/MyListings';
 import ConfirmDelete from './cards/ConfirmDelete';
 import ShortList from './cards/ShortList';
+import dummyLogo from '../../../assets/images/property_1.jpeg'
 
 const Right = () => {
   const [authUser] = useState(JSON.parse(localStorage.getItem('isAuth')) || false)
@@ -60,10 +61,82 @@ const Right = () => {
       
     </div>
     :
-    <p>Login To Use Feature</p>
 
+    <div className='p-5'>  
+    <div className='py-5'>
+      <h4 className='border-b-4 border-red font-semibold'>Shortlisted</h4>
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      
+    </div>
+    <div className='py-5'>
+      <h4 className='border-b-4 border-red font-semibold'>Liked</h4>
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      <div className='flex border border-bordercolor p-2 rounded-md m-2'>
+        <div className='w-5/12'><img src={dummyLogo} className='w-full h-16 object-cover rounded-md' /></div>
+        <div className='w-7/12'>
+          <h4 className='font-semibold text-xs px-2'>Property Title - Lorem, ipsum.</h4>
+          <p className='italic text-xs px-2'>Chandigarh</p>
+        </div>
+      </div>
+
+      
+    </div>
+    </div>
     }
-
     </>
    
 
