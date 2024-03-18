@@ -63,6 +63,9 @@ const Right = () => {
     :
 
     <div className='p-5'>  
+    <div className='bg-red rounded-md my-2'>
+        <h4 className='font-semibold text-white px-2 py-1'>Login to use feature</h4>
+      </div>
     <div className='py-5'>
       <h4 className='border-b-4 border-red font-semibold'>Shortlisted</h4>
       <div className='flex border border-bordercolor p-2 rounded-md m-2'>
