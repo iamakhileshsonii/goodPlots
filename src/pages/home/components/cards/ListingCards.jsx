@@ -105,7 +105,7 @@ const handleShortlist = ()=>{
         </div>
 
         <div>
-          <p className='py-2 text-lightText'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel assumenda illo dolorum placeat culpa iusto saepe sunt ullam aut dolore....More</p>
+          <p className='py-2 text-lightText'>{propertyDetail.desc.substring(0, 140)}...More</p>
         </div>
 
         <div className='flex gap-4'>
