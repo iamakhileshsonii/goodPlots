@@ -10,10 +10,12 @@ const handleReject = async ()=>{
     const appointment = doc(db, 'gp_appointments', detail.id)
     await deleteDoc(appointment)
     console.log("Appointment Rejected",detail.id)
+    alert("Appointment Rejected Successfully!")
 }
 
 const handleAccept = ()=>{
     console.log("Appointment Accepted",detail.id)
+    alert("Appointment Accepted Successfully!")
 }
   return (
     <div className='p-2 my-2 border border-bordercolor rounded-md'>
