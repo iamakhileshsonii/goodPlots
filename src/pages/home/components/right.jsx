@@ -37,10 +37,10 @@ const Right = () => {
       </div>
 
       <div>
-        {
+        { myListings.length > 0 ? (
           myListings && myListings.map((list)=>(
             <MyListings key={list.id} property={list}/>
-          ))
+          ))) : <p>No Listing available</p>
         }
       
       </div>

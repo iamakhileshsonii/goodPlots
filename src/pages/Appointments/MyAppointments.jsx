@@ -8,10 +8,13 @@ const MyAppointments = () => {
 
   return (
     <div>
-      { appointments && appointments.map((appointment)=>(
-        <AppointmentCard detail={appointment} key={appointment.id}/>
-      )) 
-      }
+      {appointments.length > 0 ? (
+        appointments.map(appointment => (
+          <AppointmentCard detail={appointment} key={appointment.id} />
+        ))
+      ) : (
+        <p>No appointments available</p>
+      )}
     </div>
   )
 }
