@@ -97,7 +97,39 @@ School
           <p className='font-semibold text-red hover:underline'>RENT</p>
         </div>
       </div>
+
+
+      <div className='w-9/11 sm:w-1/5 border border-bordercolor p-3 rounded-md'>
+        <h4 className='text-center text-red font-semibold tracking-widest'>RESIDENTIAL</h4>
+        <p className='text-center'>House | Appartment | Cottages
+            Plot Land | Builder Floor
+            Studio | Duplex Penthouse
+        </p>
+        <div className='flex justify-between py-2'>
+          <p className='font-semibold text-red hover:underline'>BUY</p>
+          <p>|</p>
+          <p className='font-semibold text-red hover:underline'>RENT</p>
+        </div>
+      </div>
+
+      <div className='w-9/11 sm:w-1/5 border border-bordercolor p-3 rounded-md'>
+        <h4 className='text-center text-red font-semibold tracking-widest'>RESIDENTIAL</h4>
+        <p className='text-center'>House | Appartment | Cottages
+            Plot Land | Builder Floor
+            Studio | Duplex Penthouse
+        </p>
+        <div className='flex justify-between py-2'>
+          <p className='font-semibold text-red hover:underline'>BUY</p>
+          <p>|</p>
+          <p className='font-semibold text-red hover:underline'>RENT</p>
+        </div>
+      </div>
+
     </div>
+
+
+
+    
 
 
     </div>

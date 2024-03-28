@@ -4,6 +4,9 @@ import { useUserData } from '../../context/UserContext';
 import ListingCards from '../home/components/cards/ListingCards';
 
 const AllListings = () => {
+
+    const isAuth = JSON.parse(localStorage.getItem('isAuth')) || false
+
     const {gpData, isLoading} = useContextData();
     const {userData} = useUserData();
   
@@ -16,12 +19,36 @@ const AllListings = () => {
     const filterListings = gpData.filter(
       (list) => list.authInfo.userId !== userData?.authInfo?.userId && list.feedDetails.status === "published"
     );
+
+    const handleFilter = ()=>{
+      console.log("Filter Started")
+    }
   
   return (
     <div>
-    <div className='grid justify-center w-full p-5'>
+    <div className='flex justify-between w-full p-5'>
       <h4 className='border-b-4 border-red font-semibold'>All Listings</h4>
+      {
+        isAuth ? 
+        <select name="Filter" id="Filter" className='bg-red border border-red rounded-md text-white' onClick={handleFilter}>
+          <option value="Filter" defaultChecked disabled>Filter</option>
+          <option value="Residential">Residential</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Industrial">Industrial</option>
+          <option value="Agriculture">Agriculture</option>
+        </select>
+        :
+        <select name="Filter" id="Filter" className='bg-red border border-red rounded-md text-white' onClick={handleFilter}>
+          <option value="Filter" defaultChecked disabled >Filter</option>
+          <option value="Residential" >Residential</option>
+          <option value="Commercial" >Commercial</option>
+          <option value="Industrial" >Industrial</option>
+          <option value="Agriculture" >Agriculture</option>
+        </select>
+      }
+
     </div>
+
 
     <div>
     {filterListings.map((property) => (
