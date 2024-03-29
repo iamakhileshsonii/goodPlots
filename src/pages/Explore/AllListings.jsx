@@ -3,6 +3,7 @@ import { useContextData } from '../../context/DataContext';
 import { useUserData } from '../../context/UserContext';
 import ListingCards from '../home/components/cards/ListingCards';
 
+
 const AllListings = () => {
     const isAuth = JSON.parse(localStorage.getItem('isAuth')) || false;
     const { gpData, isLoading } = useContextData();
@@ -48,6 +49,9 @@ const AllListings = () => {
                     <option value="Agriculture Rent">Agriculture Rent</option>
                 </select>
             </div>
+
+
+
             <div>
                 <p className='font-semibold underline decoration-red underline-offset-4 decoration-3 py-5'>{displayMessage()}</p>
                 {filterListings.map((property) => (
