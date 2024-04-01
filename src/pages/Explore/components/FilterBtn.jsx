@@ -11,26 +11,14 @@ const FilterBtn = () => {
 
   return (
     <div>
-      <Button onClick={handleOpen} variant="gradient">
-        Open Dialog
-      </Button>
+      <button onClick={handleOpen} className='py-1 px-2 bg-red text-white font-semibold rounded-md'>Filter</button>
       <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogHeader>Filter Your Search </DialogHeader>
         <DialogBody>
-         <Filter/>
+         <Filter popUp={handleOpen}/>
         </DialogBody>
         <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={handleOpen}>
-            <span>Confirm</span>
-          </Button>
+          
         </DialogFooter>
       </Dialog>
     </div>

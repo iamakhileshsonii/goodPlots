@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useContextData } from '../../context/DataContext';
 import { useUserData } from '../../context/UserContext';
 import ListingCards from '../home/components/cards/ListingCards';
+import FilterBtn from './components/FilterBtn';
 
 
 const AllListings = () => {
@@ -34,11 +35,12 @@ const AllListings = () => {
     };
 
     return (
-        <div>
+        <div>            
             <div className='flex justify-between w-full p-5'>
                 <h4 className='border-b-4 border-red font-semibold'>All Listings</h4>
-                <select name="Filter" id="Filter" className='bg-red border border-red rounded-md text-white' onChange={(e) => setFilterProp(e.target.value)}>
-                    <option value="">All</option> {/* This ensures the user can select "All" to reset or show all */}
+                <FilterBtn/>
+                {/* <select name="Filter" id="Filter" className='bg-red border border-red rounded-md text-white' onChange={(e) => setFilterProp(e.target.value)}>
+                    <option value="">All</option> 
                     <option value="Residential Buy">Residential Buy</option>
                     <option value="Commercial Buy">Commercial Buy</option>
                     <option value="Industrial Buy">Industrial Buy</option>
@@ -47,7 +49,7 @@ const AllListings = () => {
                     <option value="Commercial Rent">Commercial Rent</option>
                     <option value="Industrial Rent">Industrial Rent</option>
                     <option value="Agriculture Rent">Agriculture Rent</option>
-                </select>
+                </select> */}
             </div>
 
 
