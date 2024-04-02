@@ -49,7 +49,8 @@ return (
             <img src={userData[0]?.userDp || ""} className='h-12 w-12 rounded-full self-center'/>   
               <div className='block text-left'>
               <h2 className='text-left font-semibold text-xl px-2 self-center'>{userData[0]?.userName} </h2>
-              <span className='text-left text-lg my-0 py-0 font-semibold text-red px-2'>{userData[0]?.userRole}</span>
+              <div className='flex align-center'><span className='text-left text-lg my-0 py-0 font-semibold text-red px-2'>{userData[0]?.userRole}</span>
+              <p className='italic text-xs self-center'>{userData[0]?.userCity}</p></div>
               </div>    
         </div>
     </div>

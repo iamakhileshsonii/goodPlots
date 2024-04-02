@@ -78,7 +78,7 @@ const Filter = ({ popUp }) => {
                     </div>
                 )}
 
-{activeStep === 1 && (
+                {activeStep === 1 && (
                     <div className='grid justify-center p-5'>
                         <h4 className='text-center font-semibold text-black pt-5 pb-3'>Posted By</h4>
                         <div className='flex flex-wrap  gap-3 justify-evenly'>
@@ -138,13 +138,13 @@ const Filter = ({ popUp }) => {
                     </div>
                 )}
 
-<div className="mt-16 grid justify-center">
-    {activeStep > 0 && (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-black hover:text-red hover:duration-600" onClick={handlePrev}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </svg>
-    )}
-</div>
+            <div className="mt-16 grid justify-center">
+                {activeStep > 0 && (
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-black hover:text-red hover:duration-600" onClick={handlePrev}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                )}
+            </div>
             </div>
         </>
     )
