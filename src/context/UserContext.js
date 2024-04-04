@@ -5,7 +5,7 @@ import { auth, db } from "../firebase";
 const UserDataContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [authId, setAuthId] = useState('');
+  const [authId, setAuthId] = useState("");
   const [userData, setUserData] = useState([]);
   const [userDataLoading, setUserDataLoading] = useState(true); // Introduce loading state
 
@@ -16,7 +16,7 @@ export const UserProvider = ({ children }) => {
       if (user) {
         setAuthId(user.uid);
       } else {
-        setAuthId(''); // Reset authId if user is not logged in
+        setAuthId(""); // Reset authId if user is not logged in
       }
     });
 
@@ -29,10 +29,12 @@ export const UserProvider = ({ children }) => {
         const data = await getDocs(docRef);
         const fetchedData = data.docs.map((document) => ({
           ...document.data(),
-          id: document.id
+          id: document.id,
         }));
 
-        const filteredUser = fetchedData.filter((user) => user.authInfo.userId === authId);
+        const filteredUser = fetchedData.filter(
+          (user) => user.authInfo.userId === authId
+        );
         setUserData(filteredUser);
         setUserDataLoading(false); // Update loading state after data is fetched
       } catch (error) {
@@ -48,7 +50,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserDataContext.Provider value={{ userData, userDataLoading }}>
-        {children}
+      {children}
     </UserDataContext.Provider>
   );
 };

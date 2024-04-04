@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useContextData } from '../../context/DataContext';
 import { useUserData } from '../../context/UserContext';
 import ListingCards from '../home/components/cards/ListingCards';
-import FilterBtn from './components/FilterBtn';
+import FilterBtn from './components/Filter/FilterBtn';
 
 
 const AllListings = () => {

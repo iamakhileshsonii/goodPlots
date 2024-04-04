@@ -1,27 +1,51 @@
-import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
 import google from '../assets/logo/google.png';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { auth, provider } from '../firebase';
+import { useUserData } from '../context/UserContext';
 
 const Googleauth = () => {
   const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
-  
+  const { userData, userDataLoading } = useUserData();
+
+  useEffect(() => {
+    if (!userDataLoading && userData.length > 0) {
+      const userId = auth.currentUser ? auth.currentUser.uid : null;
+      const user = userData[0];
+
+      // Check if the user is logged in and the user ID matches
+      if (userId && user && userId === user.authInfo.userId) {
+        navigate('/explore/alllistings');
+      } else {
+        navigate('/setupprofile');
+      }
+    }
+  }, [userData, userDataLoading, navigate]);
+
   async function handleLogin() {
-    await signInWithPopup(auth, provider)
-    setIsAuth(true)
-    localStorage.setItem("isAuth", true)
-    navigate('/setupprofile')
+    try {
+      await signInWithPopup(auth, provider);
+      setIsAuth(true);
+      localStorage.setItem("isAuth", true);
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login error
+    }
   }
 
   async function handleLogout() {
-    await signOut(auth)
-    setIsAuth(false)
-    navigate('/')
+    try {
+      await signOut(auth);
+      setIsAuth(false);
+      navigate('/');
+    } catch (error) {
+      console.error("Logout failed:", error);
+      // Handle logout error
+    }
   }
-
 
   return (
     <>
