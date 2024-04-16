@@ -40,7 +40,7 @@ const SetupProfile = () => {
     };
 
     await addDoc(userRef, userInfo);
-      navigate("/home");
+      navigate("/explore/alllistings");
     
   }
 

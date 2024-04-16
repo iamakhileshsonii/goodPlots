@@ -19,8 +19,8 @@ const Login = () => {
     try {
       // Use Firebase authentication to sign in
       await signInWithEmailAndPassword(auth, email, password);
-      setIsAuth(true);
-      navigate('/home');
+      localStorage.setItem("isAuth", true);
+      navigate('/explore/alllistings');
     } catch (error) {
       console.log(error);
     }

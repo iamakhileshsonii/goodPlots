@@ -7,7 +7,7 @@ import { auth, provider } from '../firebase';
 import { useUserData } from '../context/UserContext';
 
 const Googleauth = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(JSON.parse(localStorage.getItem('isAuth')) || false);
   const navigate = useNavigate();
   const { userData, userDataLoading } = useUserData();
 
@@ -28,7 +28,6 @@ const Googleauth = () => {
   async function handleLogin() {
     try {
       await signInWithPopup(auth, provider);
-      setIsAuth(true);
       localStorage.setItem("isAuth", true);
       navigate('/explore/alllistings')
     } catch (error) {
@@ -40,7 +39,7 @@ const Googleauth = () => {
   async function handleLogout() {
     try {
       await signOut(auth);
-      setIsAuth(false);
+      localStorage.setItem("isAuth", false);
       navigate('/');
     } catch (error) {
       console.error("Logout failed:", error);
