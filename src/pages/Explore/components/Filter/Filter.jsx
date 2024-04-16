@@ -54,7 +54,7 @@ const Filter = () => {
     </TabsBody>
   </Tabs>
 
-            <Tabs value={data[0].value} orientation="vertical" className="block sm:hidden md:flex-grow">
+            <Tabs value={data[0].value} orientation="horizontal" className="block sm:hidden md:flex-grow">
                 <TabsHeader className="sm:w-44">
                     {data.map(({ label, value }) => (
                         <Tab key={value} value={value} className='text-xs text-left'>
