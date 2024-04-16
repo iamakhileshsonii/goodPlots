@@ -11,25 +11,26 @@ const Googleauth = () => {
   const navigate = useNavigate();
   const { userData, userDataLoading } = useUserData();
 
-  useEffect(() => {
-    if (!userDataLoading && userData.length > 0) {
-      const userId = auth.currentUser ? auth.currentUser.uid : null;
-      const user = userData[0];
+  // useEffect(() => {
+  //   if (!userDataLoading && userData.length > 0) {
+  //     const userId = auth.currentUser ? auth.currentUser.uid : null;
+  //     const user = userData[0];
 
-      // Check if the user is logged in and the user ID matches
-      if (userId && user && userId === user.authInfo.userId) {
-        navigate('/explore/alllistings');
-      } else {
-        navigate('/setupprofile');
-      }
-    }
-  }, [userData, userDataLoading, navigate]);
+  //     // Check if the user is logged in and the user ID matches
+  //     if (userId && user && userId === user.authInfo.userId) {
+  //       navigate('/explore/alllistings');
+  //     } else {
+  //       navigate('/setupprofile');
+  //     }
+  //   }
+  // }, [userData, userDataLoading, navigate]);
 
   async function handleLogin() {
     try {
       await signInWithPopup(auth, provider);
       setIsAuth(true);
       localStorage.setItem("isAuth", true);
+      navigate('/explore/alllistings')
     } catch (error) {
       console.error("Login failed:", error);
       // Handle login error

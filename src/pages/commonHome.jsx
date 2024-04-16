@@ -42,6 +42,7 @@ const CommonHome = () => {
         <option value="Chandigarh">Chandigarh</option>
         <option value="Haryana">Haryana</option>
         <option value="Punjab">Punjab</option>
+        <option value="Punjab">Rajasthan</option>
       </select>
     </div>
 

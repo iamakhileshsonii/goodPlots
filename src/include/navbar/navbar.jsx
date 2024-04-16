@@ -54,7 +54,7 @@ const Navbar = () => {
             </Tooltip>
 
             {
-              isAuth ? 
+              isAuth && isAuth ? 
                 <Tooltip content="Logout" placement="bottom">
               <p onClick={handleLogout}>Logout</p>
               </Tooltip>
