@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <>
      <div className='flex justify-between w-full px-10 py-5 border-b border-bordercolor'> 
-        <div className='w-2/12 grid justify-center'><a href="/"><img src={logo} alt="GoodPlots" className='w-48' /></a></div>
+        <div className='w-1/3 sm:w-2/12 grid justify-center'><a href="/"><img src={logo} alt="GoodPlots" className='w-48' /></a></div>
         <div className='flex items-center justify-evenly w-1/3'>
             <Tooltip content="Dashboard" placement="bottom">
             <a href="/explore/alllistings">
